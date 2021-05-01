@@ -58,7 +58,7 @@ export type IconType =
   | 'pinterest'
   | 'instagram'
   | 'linkedIn'
-  | 'Dehaze'
+  | 'dehaze'
 
 export interface IIconButtonProps extends IconButtonProps {
   icon: IconType
