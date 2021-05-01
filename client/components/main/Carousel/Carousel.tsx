@@ -91,6 +91,7 @@ const Carousel: FunctionComponent = () => {
   // useEffect(() => {
   //   autoplay && setInterval(async () => await increase(), duration || 5200)
   // }, [autoplay, duration, increase])
+  // aboba
 
   return (
     <div className={classes.root}>
