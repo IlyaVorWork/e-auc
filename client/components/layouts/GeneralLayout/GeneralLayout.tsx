@@ -210,7 +210,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                       </span>
                     </Grid>
                   ) : (
-                    <Grid container spacing={1} alignItems={'center'}>
+                    <Grid container spacing={1} alignItems={'center'} direction={'column'}>
                       <Grid className={classes.menuItem}>
                         <Link href={'/signup'} className={classes.link}>
                           Регистрация
