@@ -18,7 +18,7 @@ import { useStyles } from './GeneralLayout.styles'
 import { ThemeContext } from '@providers/ThemeProvider'
 
 import * as ThemeActions from '@actions/theme'
-import { IThemeProps, ThemeType } from '@interfaces/theme'
+import { ThemeType } from '@interfaces/theme'
 import clsx from 'clsx'
 import Footer from '@components/main/Footer'
 import { useQuery } from '@apollo/client'
@@ -60,11 +60,11 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
   const swapTheme = async (t: ThemeType) =>
     await themeDispatch(ThemeActions.changeTheme(t))
 
-  const theme = useTheme<IThemeProps>()
+  const theme: any = useTheme()
 
-  const isSmallWidth = useMediaQuery(theme.theme.breakpoints.down('sm'))
   const [isHidden, setIsHidden] = useState<string>('hidden')
 
+  const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <>
       <header className={classes.header}>
@@ -80,7 +80,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
             >
               <Grid className={classes.themeSwitch}>
                 <Grid spacing={1}>
-                  {theme.theme.name == 'Light Theme' ? (
+                  {theme.name == 'Light Theme' ? (
                     <Grid>
                       <IconButton
                         icon={'moon'}
@@ -242,7 +242,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
             </Grid>
             <Grid className={classes.themeSwitch}>
               <Grid spacing={1}>
-                {theme.theme.name == 'Light Theme' ? (
+                {theme.name == 'Light Theme' ? (
                   <Grid>
                     <IconButton
                       icon={'moon'}
@@ -384,10 +384,8 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
         >
           <Grid className={classes.footerLogo}>
             &#169; 2021 e
-            <span style={{ color: theme.theme.palette.primary.light }}>
-              Auc
-            </span>
-            . Все права защищены
+            <span style={{ color: theme.palette.primary.light }}>Auc</span>. Все
+            права защищены
           </Grid>
         </Typography>
       </footer>

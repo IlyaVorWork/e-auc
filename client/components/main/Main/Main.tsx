@@ -34,7 +34,11 @@ const Main: FunctionComponent = () => {
     <div className={classes.mainContainer}>
       <Grid container direction={'column'} spacing={6}>
         <Hidden xsDown>
-          <Grid item sm={isLarge ? 6 : 12} className={classes.carouselContainer}>
+          <Grid
+            item
+            sm={isLarge ? 6 : 12}
+            className={classes.carouselContainer}
+          >
             <Carousel />
           </Grid>
         </Hidden>

@@ -254,7 +254,10 @@ const Register: FunctionComponent = () => {
         >
           <Grid container justify="center" alignContent="center">
             <Grid item>
-              Уже зарегистрированы? <Link href={'/signin'} className={classes.link}>Войдите</Link>
+              Уже зарегистрированы?{' '}
+              <Link href={'/signin'} className={classes.link}>
+                Войдите
+              </Link>
             </Grid>
           </Grid>
         </Paper>
