@@ -103,7 +103,7 @@ export const useStyles = makeStyles((theme: Theme & { name: string }) =>
         paddingBottom: '20px',
       },
       header: {
-        marginBottom: 0,
+        marginBottom: 40,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

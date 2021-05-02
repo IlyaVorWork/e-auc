@@ -19,6 +19,7 @@ const searchClient = algoliasearch(
 )
 
 const Shop: FunctionComponent = () => {
+  console.log(searchClient)
   const classes = useStyles()
   const [count, setCount] = useState<number>(0)
   const getCount = (v: number) => setCount(v)
