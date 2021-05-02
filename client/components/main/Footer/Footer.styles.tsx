@@ -49,6 +49,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     subscribeButton: {
+      width: '200px',
       borderRadius: '0px 30px 30px 0px',
       padding: '14px 28px',
       height: 48,
@@ -85,11 +86,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.between('sm', 'md')]: {
       subscribeButton: {
-        width: '200px',
         borderRadius: '0 30px 30px 0',
       },
       subscribeInput: {
-        width: '200px',
         '& div': {
           borderRadius: '30px 0 0 30px',
         },

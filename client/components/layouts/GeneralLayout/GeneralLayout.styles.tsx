@@ -53,7 +53,7 @@ export const useStyles = makeStyles((theme: Theme & { name: string }) =>
     //   fontSize: '.875rem',
     //   borderBottom: '1px dashed #e0e0e0',
     // },
-    themeSwitch: { marginRight: 'auto' },
+    themeSwitch: { marginRight: 'auto', marginLeft: 25 },
     themeIcon: {
       transition: '.2s ease-in-out',
       '& svg': {
