@@ -25,6 +25,7 @@ const Footer: FunctionComponent = () => {
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
   const { state, dispatch } = useContext(AppContext)
+  const { isAuthenticated } = state
   const [createEmailSubscriber] = useMutation(CREATE_EMAIL_SUBSCRIBER)
   const [deleteEmailSubscriber] = useMutation(DELETE_EMAIL_SUBSCRIBER)
 
@@ -38,14 +39,20 @@ const Footer: FunctionComponent = () => {
           state.user,
           values.email
         )
-        if (!data.createEmailSubscriber) {
-          enqueueSnackbar(errorMessage(data), {
+        if (!isAuthenticated) {
+          enqueueSnackbar('Вы не авторизованы!', {
             variant: 'error',
           })
         } else {
-          enqueueSnackbar('Подписка подтверждена', {
-            variant: 'success',
-          })
+          if (!data.createEmailSubscriber) {
+            enqueueSnackbar(errorMessage(data), {
+              variant: 'error',
+            })
+          } else {
+            enqueueSnackbar('Подписка подтверждена', {
+              variant: 'success',
+            })
+          }
         }
       } catch (error) {
         enqueueSnackbar(errorMessage(error), {
