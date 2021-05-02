@@ -58,7 +58,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
     await buy(dispatch, id, state.cart, available, enqueueSnackbar)
     if (itemCount > 1) {
       const currentCount = countOfItem(id, state.cart)
-      await updateCount(dispatch, state.cart, id, currentCount + itemCount)
+      await updateCount(dispatch, state.cart, id, currentCount + itemCount - 1)
     }
   }
 

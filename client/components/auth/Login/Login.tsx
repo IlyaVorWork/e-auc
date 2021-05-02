@@ -180,11 +180,11 @@ const Login: FunctionComponent = () => {
               }}
               item
             >
-              <hr style={{ width: 'calc(50% - 10px)' }} />
+              <hr style={{ width: 'calc(50% - 20px)' }} />
               <Typography variant="h3" className={classes.serviceHeading}>
                 ИЛИ
               </Typography>
-              <hr style={{ width: 'calc(50% - 10px)' }} />
+              <hr style={{ width: 'calc(50% - 20px)' }} />
             </Grid>
             <SocialAuth />
           </Grid>

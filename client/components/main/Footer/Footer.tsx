@@ -28,6 +28,7 @@ const Footer: FunctionComponent = () => {
   const { isAuthenticated } = state
   const [createEmailSubscriber] = useMutation(CREATE_EMAIL_SUBSCRIBER)
   const [deleteEmailSubscriber] = useMutation(DELETE_EMAIL_SUBSCRIBER)
+  console.log(isAuthenticated)
 
   const handleSubscribe = useCallback(
     async (values) => {
