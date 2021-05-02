@@ -15,6 +15,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     serviceHeading: {
       textAlign: 'center',
+      fontSize: 18,
       width: '50px !important',
       margin: '0px 10px 20px 10px',
     },
