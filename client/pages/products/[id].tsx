@@ -10,6 +10,7 @@ import PRODUCT from '@graphql/queries/Product'
 const ProductPage: NextPage = () => {
   const router = useRouter()
   // console.log(router)
+  // aboba
   const productId = router.query.id
   const { data, loading } = useQuery(PRODUCT, {
     variables: {
