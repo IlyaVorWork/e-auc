@@ -184,38 +184,6 @@ const About: FunctionComponent = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Hidden xsDown>
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <div
-                  className={classes.slide}
-                  style={{ backgroundImage: `url(/images/about-us/app.jpeg)` }}
-                >
-                  <div className={classes.contents}>
-                    <Typography
-                      variant={'h2'}
-                      className={classes.title}
-                      paragraph={true}
-                    >
-                      Food Market iPhone & Android App
-                    </Typography>
-                    <Typography
-                      variant={'body2'}
-                      className={classes.subtitle}
-                      paragraph={true}
-                    >
-                      Faster shopping with a whole new way to search and
-                      navigate. Shop your last order again with just one click.
-                      Check out easily — just one step!
-                    </Typography>
-                    <Button href={'/shop'} className={classes.button}>
-                      Загрузить
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Grid>
-          </Hidden>
         </Grid>
       </div>
     </>
