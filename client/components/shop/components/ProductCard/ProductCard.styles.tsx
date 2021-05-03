@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       textDecoration: 'none',
       fontWeight: 400,
       '&:hover': {
-        color: theme.palette.secondary.main,
+        color: theme.palette.primary.light + '!important',
       },
       '& > *': {
         width: 'fit-content',
@@ -39,35 +39,25 @@ export const useStyles = makeStyles((theme: Theme) =>
       height: '100%',
     },
     link: {
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.primary.contrastText + '!important',
       transition: '.05s ease-in-out',
       '&:hover': {
-        color: theme.palette.secondary.main,
+        color: theme.palette.primary.light + '!important',
       },
     },
     slideContainer: {
       width: 32,
       position: 'absolute',
-      right: 6,
+      right: 8,
       top: 20,
     },
-    iconAnimation: {
-      opacity: 0,
-      padding: '4px 0px !important',
-      transition: '.1s ease-in-out',
-      transform: 'translateX(-10px)',
-      '&:nth-child(2)': {
-        transitionDelay: '.075s',
-      },
-    },
     icon: {
-      // color: grey[600],
       transition: '.1s ease-in-out',
       '&:hover': {
-        color: theme.palette.primary.main,
+        backgroundColor: 'transparent',
+        color: theme.palette.primary.main + '!important',
       },
       cursor: 'pointer',
-      color: theme.palette.secondary.main,
     },
     rating: {
       '& svg': {
@@ -91,6 +81,19 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     actions: {
       minHeight: 30,
+    },
+    [theme.breakpoints.down('sm')]: {
+      root: {
+        '&:hover': {
+          boxShadow: theme.shadows['4'],
+          '& $rating': {
+            display: 'flex',
+          },
+          '& $cartButton': {
+            display: 'none',
+          },
+        },
+      },
     },
   })
 )

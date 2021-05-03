@@ -16,7 +16,12 @@ const CartMini = () => {
   const dropCart = async () => await clearCart(dispatch)
 
   return (
-    <Grid container direction={'column'} spacing={3}>
+    <Grid
+      container
+      direction={'column'}
+      spacing={3}
+      className={classes.mainCartMini}
+    >
       <Grid item>
         <Grid container justify={'space-between'} alignItems={'center'}>
           <Grid item>
@@ -47,7 +52,7 @@ const CartMini = () => {
                   className={classes.productMini}
                   spacing={1}
                 >
-                  <Grid item>
+                  <Grid item style={{ paddingLeft: 20 }}>
                     <img src={image.url} alt={name} className={classes.image} />
                   </Grid>
                   <Grid item>

@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     current: {
-      color: theme.palette.secondary.main + ' !important',
+      color: theme.palette.primary.light + ' !important',
     },
   })
 )

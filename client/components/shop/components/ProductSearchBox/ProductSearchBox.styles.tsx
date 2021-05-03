@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { green } from '@material-ui/core/colors'
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,16 +16,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderStyle: 'solid',
       borderWidth: 1,
       borderRadius: 0,
-      borderColor: 'rgba(0,0,0,0.14)',
+      borderColor: theme.palette.primary.contrastText,
       padding: '14px 16px 15px 24px',
       backgroundColor: theme.palette.background.paper,
       '&:focus': {
         outline: 'none',
-        borderColor: green[100],
       },
     },
     icon: {
-      color: green[300],
+      color: theme.palette.primary.contrastText,
       right: 12,
       position: 'absolute',
       userSelect: 'none',

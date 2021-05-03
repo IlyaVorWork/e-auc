@@ -1,7 +1,6 @@
 import React from 'react'
 import { connectMenu } from 'react-instantsearch-dom'
 import { Grid, Typography } from '@material-ui/core'
-import { CategoryOutlined } from '@material-ui/icons'
 import { Divider, IconButton, Link } from '@ui/index'
 import { useStyles } from '@components/shop/Shop/Shop.styles'
 import clsx from 'clsx'
@@ -27,14 +26,6 @@ const Menu = connectMenu(({ items, refine, createURL }) => {
       {items.map((item) => (
         <Grid item key={item.value}>
           <Grid container spacing={1} alignItems={'center'}>
-            <Grid item>
-              <CategoryOutlined
-                className={clsx(
-                  classes.categoryIcon,
-                  item.isRefined ? classes.activeIcon : null
-                )}
-              />
-            </Grid>
             <Grid item>
               <Link
                 href={createURL(item.value)}

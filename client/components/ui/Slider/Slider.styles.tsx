@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     label: {
       color: theme.palette.background.paper,
       '& > span': {
-        borderColor: 'rgba(0,0,0,0.14)',
+        borderColor: theme.palette.primary.contrastText,
         borderStyle: 'solid',
         borderWidth: 1,
         width: '42px',

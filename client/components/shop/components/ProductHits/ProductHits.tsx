@@ -17,7 +17,7 @@ const ProductHits = connectInfiniteHits(({ hits, getCount }) => {
   return (
     <Grid
       container
-      justify={isSmallWidth ? 'center' : 'flex-start'}
+      justify={isSmallWidth ? 'center' : 'space-evenly'}
       alignItems={'center'}
       spacing={3}
       className={classes.hits}

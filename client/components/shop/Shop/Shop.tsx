@@ -8,6 +8,7 @@ import { InstantSearch } from 'react-instantsearch-dom'
 import ProductHits from '@components/shop/components/ProductHits'
 import ProductSearchBox from '@components/shop/components/ProductSearchBox'
 import SideBar from '@components/shop/components/SideBar'
+import FiltersMenu from '@components/shop/components/FiltersMenu'
 import { useStyles } from '@components/shop/Shop/Shop.styles'
 import { Breadcrumbs, Divider } from '@ui/index'
 
@@ -26,6 +27,7 @@ const Shop: FunctionComponent = () => {
 
   const theme = useTheme()
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
+  const isLaptop = useMediaQuery(theme.breakpoints.between(960, 1280))
 
   return (
     <>
@@ -43,7 +45,7 @@ const Shop: FunctionComponent = () => {
           <Typography variant={'h1'}>Магазин</Typography>
         </Grid>
       </Grid>
-      <Divider type={'wide'} />
+      <Divider type={'wide'} className={classes.divider} />
       <InstantSearch indexName={indexName} searchClient={searchClient}>
         <Grid
           container
@@ -62,6 +64,16 @@ const Shop: FunctionComponent = () => {
                   direction={isSmallWidth ? 'column' : 'row'}
                   spacing={isSmallWidth ? 2 : 0}
                 >
+                  {isSmallWidth ? (
+                    <Grid item style={{ width: '90%', maxWidth: '360px' }}>
+                      <FiltersMenu />
+                    </Grid>
+                  ) : null}
+                  {isLaptop ? (
+                    <Grid item xs={12} lg={3}>
+                      <SideBar />
+                    </Grid>
+                  ) : null}
                   <Grid item>
                     <SortingSelector
                       defaultRefinement="products_publishing_date"
@@ -100,9 +112,11 @@ const Shop: FunctionComponent = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} lg={3}>
-            <SideBar />
-          </Grid>
+          {isLaptop || isSmallWidth ? null : (
+            <Grid item xs={12} lg={3}>
+              <SideBar />
+            </Grid>
+          )}
         </Grid>
       </InstantSearch>
     </>

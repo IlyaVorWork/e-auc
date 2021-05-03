@@ -130,9 +130,12 @@ export const useStyles = makeStyles((theme: Theme & { name: string }) =>
         },
       },
     },
-    [theme.breakpoints.between('md', 'md')]: {
+    [theme.breakpoints.between('md', 1327)]: {
       link: {
         padding: '35px 12.6px',
+      },
+      themeSwitch: {
+        marginLeft: 0,
       },
     },
   })

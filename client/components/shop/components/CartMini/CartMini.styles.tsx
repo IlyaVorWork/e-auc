@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: '20px 0',
-      maxWidth: 300,
     },
     image: {
       width: 80,
@@ -27,8 +26,20 @@ export const useStyles = makeStyles((theme: Theme) =>
       // paddingRight: 24,
     },
     link: {
-      width: 'fit-content',
+      maxWidth: '235px',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
       borderBottom: '1px dashed #e0e0e0',
+    },
+    [theme.breakpoints.between(1280, 1805)]: {
+      link: {
+        maxWidth: '150px',
+      },
+    },
+    [theme.breakpoints.down(1500)]: {
+      mainCartMini: {
+        display: 'none',
+      },
     },
   })
 )

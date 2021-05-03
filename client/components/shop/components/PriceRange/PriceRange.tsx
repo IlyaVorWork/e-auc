@@ -25,7 +25,12 @@ const PriceRange = connectRange(({ refine, currentRefinement, min, max }) => {
   return (
     <Grid container direction={'column'} spacing={6}>
       <Grid item>
-        <Grid container justify={'space-between'} alignItems={'center'}>
+        <Grid
+          container
+          justify={'space-between'}
+          alignItems={'center'}
+          style={{ marginBottom: 24, height: 30 }}
+        >
           <Grid item>
             <Typography variant={'h3'}>Цена</Typography>
           </Grid>

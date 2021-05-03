@@ -16,6 +16,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     side: {
       padding: '0 40px',
     },
+    divider: {
+      backgroundColor: theme.palette.primary.contrastText,
+    },
     categoryLink: {
       marginTop: 8,
     },

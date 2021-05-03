@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     card: {
-      textShadow: '1px 1px 1px' + theme.palette.secondary.contrastText,
+      textShadow: '1px 1px 1px' + theme.palette.primary.contrastText,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       width: '525px',

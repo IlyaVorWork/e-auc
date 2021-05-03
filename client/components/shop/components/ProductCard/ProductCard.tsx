@@ -62,7 +62,7 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
         spacing={1}
         className={classes.slideContainer}
       >
-        <Grid item className={classes.iconAnimation}>
+        <Grid item>
           <Tooltip
             title={inList ? 'Удалить из избранного' : 'Добавить в избранное'}
             placement={'left'}
