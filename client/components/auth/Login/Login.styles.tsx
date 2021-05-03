@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     heading: {
-      width: '100%',
+      width: '100% !important',
       textAlign: 'center',
       marginBottom: '1.5rem',
       fontSize: '30px',

@@ -16,7 +16,7 @@ const SignUpPage: NextPage = () => {
           alignItems: 'center',
         }}
       >
-        <Grid item style={{ width: '138px', marginBottom: '25px' }}>
+        <Grid item style={{ width: '100%', marginBottom: '25px', textAlign: 'center' }}>
           <Link
             href={'/'}
             style={{
