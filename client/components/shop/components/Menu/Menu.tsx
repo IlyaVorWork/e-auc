@@ -12,7 +12,12 @@ const Menu = connectMenu(({ items, refine, createURL }) => {
   return (
     <Grid container direction={'column'} spacing={3}>
       <Grid item>
-        <Grid container justify={'space-between'} alignItems={'center'}>
+        <Grid
+          container
+          justify={'space-between'}
+          alignItems={'center'}
+          style={{ height: 30 }}
+        >
           <Grid item>
             <Typography variant={'h3'}>Категории</Typography>
           </Grid>
