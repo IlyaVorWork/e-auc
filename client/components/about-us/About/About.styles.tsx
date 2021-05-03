@@ -21,6 +21,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         width: '100%',
       },
     },
+    divider: {
+      backgroundColor: theme.palette.primary.contrastText,
+    },
     heading: {
       textTransform: 'uppercase',
       letterSpacing: '.2px',

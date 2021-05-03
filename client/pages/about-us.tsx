@@ -4,7 +4,7 @@ import Layout from '@components/layouts/Layout'
 import About from '@components/about-us/About'
 
 const AboutPage: NextPage = () => (
-  <Layout title="О нас | FoodMarket">
+  <Layout title="О нас | eAuc.">
     <About />
   </Layout>
 )

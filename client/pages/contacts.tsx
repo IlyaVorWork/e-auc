@@ -5,7 +5,7 @@ import Layout from '@components/layouts/Layout'
 import Contacts from '@components/contacts/Contacts'
 
 const ContactsPage: NextPage = () => (
-  <Layout title={'Контакты | FoodMarket'}>
+  <Layout title={'Контакты | eAuc.'}>
     <Contacts />
   </Layout>
 )

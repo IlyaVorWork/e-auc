@@ -5,7 +5,7 @@ import Layout from '@components/layouts/Layout'
 import Delivery from '@components/delivery'
 
 const DeliveryPage: NextPage = () => (
-  <Layout title={'Доставка | FoodMarket'}>
+  <Layout title={'Доставка | eAuc.'}>
     <Delivery />
   </Layout>
 )

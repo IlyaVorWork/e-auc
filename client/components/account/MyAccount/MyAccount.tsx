@@ -69,7 +69,7 @@ const MyAccount: FunctionComponent = () => {
           <Typography variant={'h1'}>Мой аккаунт</Typography>
         </Grid>
       </Grid>
-      <Divider type={'wide'} />
+      <Divider type={'wide'} className={classes.divider} />
       <div className={classes.root}>
         <Grid container direction={isSmallWidth ? 'column' : 'row'} spacing={3}>
           <Grid item xs={isSmallWidth ? 12 : 2}>

@@ -15,7 +15,7 @@ const Loader: FunctionComponent = () => {
       className={classes.loaderLayout}
     >
       <Grid item>
-        <img src={'/images/foodMarket.png'} alt={'FoodMarket'} width={234} />
+        <img src={'/images/eAuc.png'} alt={'eAuc.'} width={292} />
       </Grid>
       <Grid item>
         <CircularProgress />

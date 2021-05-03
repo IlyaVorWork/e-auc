@@ -33,7 +33,7 @@ const About: FunctionComponent = () => {
           <Typography variant={'h1'}>О нас</Typography>
         </Grid>
       </Grid>
-      <Divider type={'wide'} />
+      <Divider type={'wide'} className={classes.divider} />
       <div className={classes.mainContainer}>
         <Grid container direction={'column'} spacing={6}>
           <Hidden xsDown>
@@ -68,7 +68,7 @@ const About: FunctionComponent = () => {
                   align={'center'}
                   className={classes.heading}
                 >
-                  О МAГАЗИНЕ FOODMARKET
+                  ОБ ИНТЕРНЕТ-АУКЦИОНЕ EAUC.
                 </Typography>
                 <Typography
                   variant={'body2'}

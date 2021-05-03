@@ -37,7 +37,7 @@ const ShopPage: NextPage = () => {
   // }, [productsData, categoriesData])
 
   return (
-    <Layout title="Магазин | FoodMarket">
+    <Layout title="Магазин | eAuc.">
       <Shop />
     </Layout>
   )

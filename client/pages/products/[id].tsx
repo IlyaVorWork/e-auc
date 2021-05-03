@@ -26,11 +26,7 @@ const ProductPage: NextPage = () => {
 
   return (
     <Layout
-      title={
-        data?.product?.name
-          ? `${data?.product?.name} | FoodMarket`
-          : 'FoodMarket'
-      }
+      title={data?.product?.name ? `${data?.product?.name} | eAuc.` : 'eAuc.'}
     >
       <Product product={data?.product} />
     </Layout>

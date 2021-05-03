@@ -15,7 +15,10 @@ const ResetPage: NextPage = () => (
         alignItems: 'center',
       }}
     >
-      <Grid item style={{ width: '100%', marginBottom: '25px', textAlign: 'center' }}>
+      <Grid
+        item
+        style={{ width: '100%', marginBottom: '25px', textAlign: 'center' }}
+      >
         <Link
           href={'/'}
           style={{

@@ -98,7 +98,7 @@ const Contacts: FunctionComponent = () => {
           <Typography variant={'h1'}>Контакты</Typography>
         </Grid>
       </Grid>
-      <Divider type={'wide'} />
+      <Divider type={'wide'} className={classes.divider} />
       <Grid container direction={'column'} spacing={6} className={classes.root}>
         <Grid item xs={12}>
           <Map />

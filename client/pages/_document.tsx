@@ -19,8 +19,8 @@ interface IMyDocument {
 
 class MyDocument extends Document implements IMyDocument {
   url = process.env.HOST as string
-  title = 'FoodMarket'
-  description = 'Покупка и доставка еды онлайн'
+  title = 'eAuc.'
+  description = 'Онлайн аукцион электронники'
 
   render(): JSX.Element {
     return (
