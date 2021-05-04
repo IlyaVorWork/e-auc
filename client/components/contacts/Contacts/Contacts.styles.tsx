@@ -9,6 +9,15 @@ export const useStyles = makeStyles((theme: Theme) =>
     divider: {
       backgroundColor: theme.palette.primary.contrastText,
     },
+    heading: {
+      textTransform: 'uppercase',
+      letterSpacing: '.2px',
+    },
+    subHeading: {
+      maxWidth: 450,
+      width: '66vw',
+      margin: 'auto',
+    },
     root: {
       flexGrow: 1,
       display: 'flex',

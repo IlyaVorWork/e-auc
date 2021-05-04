@@ -165,11 +165,6 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
-                      <Link href={'/about-us'} className={classes.link}>
-                        О нас
-                      </Link>
-                    </Grid>
-                    <Grid className={classes.menuItem}>
                       <Link href={'/contacts'} className={classes.link}>
                         Контакты
                       </Link>
@@ -185,11 +180,6 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     <Grid className={classes.menuItem}>
                       <Link href={'/shop'} className={classes.link}>
                         Магазин
-                      </Link>
-                    </Grid>
-                    <Grid className={classes.menuItem}>
-                      <Link href={'/about-us'} className={classes.link}>
-                        О нас
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
@@ -315,11 +305,6 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
-                      <Link href={'/about-us'} className={classes.link}>
-                        О нас
-                      </Link>
-                    </Grid>
-                    <Grid className={classes.menuItem}>
                       <Link href={'/contacts'} className={classes.link}>
                         Контакты
                       </Link>
@@ -335,11 +320,6 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     <Grid className={classes.menuItem}>
                       <Link href={'/shop'} className={classes.link}>
                         Магазин
-                      </Link>
-                    </Grid>
-                    <Grid className={classes.menuItem}>
-                      <Link href={'/about-us'} className={classes.link}>
-                        О нас
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
