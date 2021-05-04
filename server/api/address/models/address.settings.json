@@ -10,14 +10,15 @@
     "timestamps": true,
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "address": {
       "type": "string"
     },
     "users_permissions_user": {
+      "via": "addresses",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "addresses"
+      "model": "user"
     }
   }
 }

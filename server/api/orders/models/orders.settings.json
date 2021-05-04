@@ -8,20 +8,26 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "total": {
-      "type": "biginteger"
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "min": 1
     },
     "products": {
-      "type": "json"
+      "type": "json",
+      "required": true
     },
     "address": {
       "type": "richtext"
     },
     "charge_id": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "token": {
       "type": "string"

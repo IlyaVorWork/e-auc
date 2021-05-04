@@ -2,27 +2,24 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "name": "Category",
-    "description": ""
+    "name": "Category"
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
     },
     "products": {
       "via": "categories",
-      "collection": "product",
-      "dominant": true
-    },
-    "link": {
-      "type": "string",
-      "required": true
+      "collection": "product"
     }
   }
 }

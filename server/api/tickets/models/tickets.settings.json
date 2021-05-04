@@ -9,20 +9,24 @@
     "timestamps": true,
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "message": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     "user": {
+      "via": "tickets",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "tickets"
+      "model": "user"
     }
   }
 }
