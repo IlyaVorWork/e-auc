@@ -1,6 +1,6 @@
 {
   "short_name": "eAuc.",
-  "name": "eAuc.: онлайн аукцион электронники",
+  "name": "eAuc.: Онлайн аукцион электронники",
   "description": "Онлайн аукцион электронники",
   "icons": [
     {
@@ -41,8 +41,8 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#3367D6",
+  "background_color": "#fff8dc",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#3367D6"
+  "theme_color": "#fff8dc"
 }
