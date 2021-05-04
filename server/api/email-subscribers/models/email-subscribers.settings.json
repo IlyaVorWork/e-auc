@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_subscribers",
+  "info": {
+    "name": "Email Subscribers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "user": {
+      "via": "email_subscriber",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}
