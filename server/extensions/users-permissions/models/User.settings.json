@@ -59,31 +59,30 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "addresses": {
-      "via": "users_permissions_user",
-      "collection": "address"
-    },
-    "orders": {
-      "via": "user",
-      "collection": "orders"
-    },
-    "tickets": {
-      "via": "user",
-      "collection": "tickets"
-    },
-    "email_subscriber": {
-      "via": "user",
-      "model": "email-subscribers"
-    },
-    "Avatar": {
+    "avatar": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
       ],
       "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
+      "required": false
+    },
+    "orders": {
+      "collection": "orders",
+      "via": "user"
+    },
+    "addresses": {
+      "via": "users_permissions_user",
+      "collection": "address"
+    },
+    "email_subscriber": {
+      "via": "user",
+      "model": "email-subscribers"
+    },
+    "tickets": {
+      "via": "user",
+      "collection": "tickets"
     }
   }
 }
