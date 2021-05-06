@@ -26,6 +26,7 @@ export interface IProductProps {
   count?: number
   available: number
   description: string
+  expire_date: Date
 }
 
 export interface IProductCardProps {

@@ -26,6 +26,7 @@ interface IProductComponent {
 const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const classes = useStyles()
   const { state, dispatch } = useContext(ShopContext)
+  console.log(state)
   const { enqueueSnackbar } = useSnackbar()
   const theme = useTheme()
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
@@ -52,7 +53,10 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
     rating,
     id,
     description,
+    expire_date,
   }: IProductProps = product
+
+  console.log(product)
 
   const toCart = async () => {
     await buy(dispatch, id, state.cart, available, enqueueSnackbar)
@@ -104,6 +108,9 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                   precision={0.5}
                   className={classes.rating}
                 />
+              </Grid>
+              <Grid item>
+                <Typography variant={'h1'}>{expire_date}</Typography>
               </Grid>
               <Grid item>
                 <Typography variant={'h1'}>{price + ' ₽'}</Typography>

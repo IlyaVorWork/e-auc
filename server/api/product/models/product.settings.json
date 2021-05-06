@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "Product"
+    "name": "Product",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -47,6 +48,11 @@
       "collection": "category",
       "via": "products",
       "dominant": true
+    },
+    "expire_date": {
+      "type": "datetime",
+      "required": true,
+      "default": "2021-08-31T05:00:00.000Z"
     }
   }
 }
