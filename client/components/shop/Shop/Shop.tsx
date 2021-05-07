@@ -76,19 +76,22 @@ const Shop: FunctionComponent = () => {
                   ) : null}
                   <Grid item>
                     <SortingSelector
-                      defaultRefinement="products_publishing_date"
+                      defaultRefinement="dev_products_publishing_date"
                       items={[
-                        { value: 'products_publishing_date', label: 'Новинки' },
                         {
-                          value: 'products_price_asc',
+                          value: 'dev_products_publishing_date',
+                          label: 'Новинки',
+                        },
+                        {
+                          value: 'dev_products_price_asc',
                           label: `Дешевле`,
                         },
                         {
-                          value: 'products_price_desc',
+                          value: 'dev_products_price_desc',
                           label: 'Дороже',
                         },
                         {
-                          value: 'products_rating',
+                          value: 'dev_products_rating',
                           label: 'По рейтингу',
                         },
                       ]}

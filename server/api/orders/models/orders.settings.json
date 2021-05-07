@@ -12,22 +12,12 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "total": {
-      "type": "decimal",
-      "required": true,
-      "default": 0,
-      "min": 1
-    },
     "products": {
       "type": "json",
       "required": true
     },
     "address": {
       "type": "richtext"
-    },
-    "charge_id": {
-      "type": "string",
-      "required": true
     },
     "token": {
       "type": "string"
@@ -36,6 +26,9 @@
       "via": "orders",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "total": {
+      "type": "biginteger"
     }
   }
 }

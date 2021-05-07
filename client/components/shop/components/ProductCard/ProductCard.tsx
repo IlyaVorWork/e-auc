@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react'
+import React, { FunctionComponent, useContext, useState } from 'react'
 import { Paper, Typography, Grid, Tooltip } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
 import { useSnackbar } from 'notistack'
@@ -24,7 +24,21 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
     rating,
     id,
     available,
+    expire_date,
   }: IProductProps = hit
+
+  const expireDate = new Date(expire_date).getTime()
+
+  const [time, setTime] = useState<number>(0)
+
+  const timer = setInterval(() => setTime(expireDate - Date.now()), 1000)
+
+  const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
+  const hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
+  const mins = ((time / 1000 / 60) % 60).toFixed(0)
+  const sec = ((time / 1000) % 60).toFixed(0)
+
+  const last = time <= 0
 
   const imgUrl = image.formats.thumbnail.url
   const productLink = `/products/${id}`
@@ -93,6 +107,11 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
           <img src={imgUrl} alt={name} className={classes.image} />
         </Grid>
         <Grid item>
+          {last
+            ? 'Торги завершены'
+            : days + ':' + hours + ':' + mins + ':' + sec}
+        </Grid>
+        <Grid item>
           <Grid container direction={'column'} spacing={2}>
             <Grid item>
               <Grid
@@ -134,7 +153,15 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
                     precision={0.5}
                     className={classes.rating}
                   />
-                  {available > 0 ? (
+                  {last ? (
+                    <Button
+                      disabled={true}
+                      variant={'text'}
+                      className={classes.cartButton}
+                    >
+                      Торги закрыты
+                    </Button>
+                  ) : (
                     <Button
                       // icon={inCart ? 'cartRemove' : 'cart'}
                       // color={inCart ? 'secondary' : 'primary'}
@@ -149,15 +176,7 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
                       onClick={toCart}
                       // inCart ? 'Из корзины' : 'В корзину'
                     >
-                      В корзину
-                    </Button>
-                  ) : (
-                    <Button
-                      disabled={true}
-                      variant={'text'}
-                      className={classes.cartButton}
-                    >
-                      Нет в наличии
+                      Сделать ставку
                     </Button>
                   )}
                 </Grid>

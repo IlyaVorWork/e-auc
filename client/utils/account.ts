@@ -124,7 +124,7 @@ export const makeOrder = async (
         input: {
           data: {
             user: user.id,
-            total: getTotal(cart),
+            total: getTotal(cart) * 100,
             products: JSON.stringify(cart),
             address: address,
             token: token?.token.id || '',

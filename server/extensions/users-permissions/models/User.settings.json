@@ -69,8 +69,8 @@
       "required": false
     },
     "orders": {
-      "collection": "orders",
-      "via": "user"
+      "via": "user",
+      "collection": "orders"
     },
     "addresses": {
       "via": "users_permissions_user",
@@ -83,6 +83,10 @@
     "tickets": {
       "via": "user",
       "collection": "tickets"
+    },
+    "bids": {
+      "via": "users_permissions_user",
+      "collection": "bid"
     }
   }
 }

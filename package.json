@@ -7,5 +7,6 @@
     "stop": "docker-compose -f docker-compose.dev.yml down --remove-orphans",
     "pull": "docker-compose -f docker-compose.dev.yml pull",
     "remove": "docker system prune -a"
-  }
+  },
+  "dependencies": {}
 }

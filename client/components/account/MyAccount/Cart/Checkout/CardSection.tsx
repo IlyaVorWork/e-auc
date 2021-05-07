@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext, useState } from 'react'
 
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { formCart } from '@utils/shop'
+import { formCart, getTotal } from '@utils/shop'
 import { useMutation } from '@apollo/client'
 import CREATE_ORDER from '@graphql/mutations/CreateOrder'
 import { ShopContext } from '@providers/ShopProvider'
@@ -42,7 +42,7 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
   const cart = formCart(state.cart, state.products).filter((x) => x)
 
   const [backdropOpen, setBackdropOpen] = useState<boolean>(false)
-
+  console.log(getTotal(cart))
   const submitOrder = async () => {
     try {
       const cardElement = elements!.getElement(CardElement)
@@ -60,6 +60,7 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
             address,
             token
           )
+          console.log(total)
           if (!data?.createOrder) {
             setBackdropOpen(false)
             throw new Error('Ошибка выполнения')
@@ -76,6 +77,7 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
       enqueueSnackbar(errorMessage(error), { variant: 'error' })
     }
   }
+
   return (
     <Grid container direction={'column'} alignItems={'center'} spacing={2}>
       <Grid item xs={12}>

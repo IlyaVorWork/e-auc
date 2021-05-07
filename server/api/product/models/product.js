@@ -6,21 +6,41 @@
  */
 
 const index = 'PRODUCTS';
+const ppd = 'products_publishing_date';
+const pr = 'products_rating';
+const ppdesc = 'products_price_desc';
+const ppasc = 'products_price_asc';
 
 module.exports = {
   lifecycles: {
     afterCreate(result, data) {
       strapi.services.algolia.saveObject(result, index);
+      strapi.services.algolia.saveObject(result, ppd);
+      strapi.services.algolia.saveObject(result, pr);
+      strapi.services.algolia.saveObject(result, ppdesc);
+      strapi.services.algolia.saveObject(result, ppasc);
     },
     afterUpdate(result, params, data) {
       if (result.published_at) {
         strapi.services.algolia.saveObject(result, index);
+        strapi.services.algolia.saveObject(result, ppd);
+        strapi.services.algolia.saveObject(result, pr);
+        strapi.services.algolia.saveObject(result, ppdesc);
+        strapi.services.algolia.saveObject(result, ppasc);
       } else {
         strapi.services.algolia.deleteObject(result.id, index);
+        strapi.services.algolia.deleteObject(result, ppd);
+        strapi.services.algolia.deleteObject(result, pr);
+        strapi.services.algolia.deleteObject(result, ppdesc);
+        strapi.services.algolia.deleteObject(result, ppasc);
       }
     },
     afterDelete(result, params) {
       strapi.services.algolia.deleteObject(result.id, index);
+      strapi.services.algolia.deleteObject(result, ppd);
+      strapi.services.algolia.deleteObject(result, pr);
+      strapi.services.algolia.deleteObject(result, ppdesc);
+      strapi.services.algolia.deleteObject(result, ppasc);
     },
   },
 };
