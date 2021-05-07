@@ -55,6 +55,19 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
     expire_date,
   }: IProductProps = product
 
+  const expireDate = new Date(expire_date).getTime()
+
+  const [time, setTime] = useState<number>(0)
+
+  setInterval(() => setTime(expireDate - Date.now()), 1000)
+
+  const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
+  const hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
+  const mins = ((time / 1000 / 60) % 60).toFixed(0)
+  const sec = ((time / 1000) % 60).toFixed(0)
+
+  const last = time <= 0
+
   const toCart = async () => {
     await buy(dispatch, id, state.cart, available, enqueueSnackbar)
     if (itemCount > 1) {
@@ -107,7 +120,9 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                 />
               </Grid>
               <Grid item>
-                <Typography variant={'h1'}>{expire_date}</Typography>
+                <Typography variant={'h1'}>
+                  {days + ':' + hours + ':' + mins + ':' + sec}
+                </Typography>
               </Grid>
               <Grid item>
                 <Typography variant={'h1'}>{price + ' ₽'}</Typography>
@@ -123,10 +138,10 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                       className={classes.buyButton}
                       onClick={toCart}
                       size={'large'}
-                      variant={available < 1 ? 'text' : 'contained'}
-                      disabled={available < 1}
+                      variant={last ? 'contained' : 'text'}
+                      disabled={last}
                     >
-                      {available > 0 ? `В корзину` : `Нет в наличии`}
+                      {last ? `Торги завершены` : `В корзину`}
                     </Button>
                   </Grid>
                   {available > 0 ? (
