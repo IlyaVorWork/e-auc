@@ -31,7 +31,7 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
 
   const [time, setTime] = useState<number>(0)
 
-  const timer = setInterval(() => setTime(expireDate - Date.now()), 1000)
+  setInterval(() => setTime(expireDate - Date.now()), 1000)
 
   const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
   const hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
