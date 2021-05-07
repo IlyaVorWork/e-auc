@@ -57,6 +57,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
 
   const expireDate = new Date(expire_date).getTime()
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [time, setTime] = useState<number>(0)
 
   setInterval(() => setTime(expireDate - Date.now()), 1000)
