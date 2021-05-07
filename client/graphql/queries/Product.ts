@@ -18,6 +18,7 @@ const PRODUCT = gql`
         link
       }
       description
+      expire_date
     }
   }
 `
