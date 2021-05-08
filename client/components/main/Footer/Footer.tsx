@@ -52,6 +52,7 @@ const Footer: FunctionComponent = () => {
             enqueueSnackbar('Подписка подтверждена', {
               variant: 'success',
             })
+            location.reload()
           }
         }
       } catch (error) {
@@ -79,6 +80,7 @@ const Footer: FunctionComponent = () => {
         enqueueSnackbar('Подписка отменена', {
           variant: 'success',
         })
+        location.reload()
       }
     } catch (error) {
       enqueueSnackbar(errorMessage(error), {
