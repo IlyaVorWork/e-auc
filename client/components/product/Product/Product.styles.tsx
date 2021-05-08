@@ -30,6 +30,11 @@ export const useStyles = makeStyles(() =>
       '& > div': {
         marginBottom: 10,
       },
+      '& div': {
+        '& input': {
+          cursor: 'default !important',
+        },
+      },
     },
     share: {
       border: 'none !important',

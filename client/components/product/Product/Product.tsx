@@ -173,6 +173,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                             id={id + '_count'}
                             label={'Количество'}
                             value={itemCount}
+                            disabled={true}
                             onChange={(e) => {
                               changeCount(+e.currentTarget.value)
                             }}
