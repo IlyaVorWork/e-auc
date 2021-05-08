@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext, useState } from 'react'
 
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { formCart, getTotal } from '@utils/shop'
+import { formCart } from '@utils/shop'
 import { useMutation } from '@apollo/client'
 import CREATE_ORDER from '@graphql/mutations/CreateOrder'
 import { ShopContext } from '@providers/ShopProvider'
@@ -30,6 +30,7 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
   const router = useRouter()
   const [createOrder] = useMutation(CREATE_ORDER)
   const { enqueueSnackbar } = useSnackbar()
+  console.log(address)
 
   const stripe = useStripe()
   const elements = useElements()
@@ -42,7 +43,6 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
   const cart = formCart(state.cart, state.products).filter((x) => x)
 
   const [backdropOpen, setBackdropOpen] = useState<boolean>(false)
-  console.log(getTotal(cart))
   const submitOrder = async () => {
     try {
       const cardElement = elements!.getElement(CardElement)

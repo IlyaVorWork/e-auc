@@ -2,6 +2,9 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    body: {
+      padding: '0px !important',
+    },
     headline: {
       width: '100%',
       paddingBottom: 20,

@@ -21,13 +21,6 @@ const Checkout: FunctionComponent<ICheckoutProps> = ({
   const classes = useStyles()
   const { state } = useContext(AppContext)
 
-  const handleChange = (e) => {
-    const a = e.target?.value
-    if (typeof a === 'number')
-      setAddress(state?.user?.addresses[e.target?.value].address)
-    else setAddress(e.target?.value)
-  }
-
   return (
     <Paper square={true} className={classes.root}>
       <Grid
@@ -45,7 +38,10 @@ const Checkout: FunctionComponent<ICheckoutProps> = ({
             options={state?.user?.addresses || []}
             getOptionLabel={(option: { address: string }) => option.address}
             className={classes.item}
-            onInputChange={(e: any) => handleChange(e)}
+            inputValue={address}
+            onInputChange={(_e: any, inputValue) => {
+              setAddress(inputValue)
+            }}
             renderInput={(params) => (
               <TextField {...params} label="Адрес" variant="outlined" />
             )}

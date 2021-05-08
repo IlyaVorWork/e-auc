@@ -6,7 +6,6 @@ import { useStyles } from '@components/shop/Shop/Shop.styles'
 import clsx from 'clsx'
 
 const Menu = connectMenu(({ items, refine, createURL }) => {
-  console.log(items)
   const classes = useStyles()
   const showX = items.some((x) => x.isRefined)
   return (

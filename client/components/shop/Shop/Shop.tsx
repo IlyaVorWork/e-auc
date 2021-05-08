@@ -12,7 +12,7 @@ import FiltersMenu from '@components/shop/components/FiltersMenu'
 import { useStyles } from '@components/shop/Shop/Shop.styles'
 import { Breadcrumbs, Divider } from '@ui/index'
 
-const indexName = 'dev_PRODUCTS'
+const indexName = 'PRODUCTS'
 
 const searchClient = algoliasearch(
   '03LZGMIZK9',
@@ -20,7 +20,6 @@ const searchClient = algoliasearch(
 )
 
 const Shop: FunctionComponent = () => {
-  console.log(searchClient)
   const classes = useStyles()
   const [count, setCount] = useState<number>(0)
   const getCount = (v: number) => setCount(v)
@@ -76,22 +75,22 @@ const Shop: FunctionComponent = () => {
                   ) : null}
                   <Grid item>
                     <SortingSelector
-                      defaultRefinement="dev_products_publishing_date"
+                      defaultRefinement="products_publishing_date"
                       items={[
                         {
-                          value: 'dev_products_publishing_date',
+                          value: 'products_publishing_date',
                           label: 'Новинки',
                         },
                         {
-                          value: 'dev_products_price_asc',
+                          value: 'products_price_asc',
                           label: `Дешевле`,
                         },
                         {
-                          value: 'dev_products_price_desc',
+                          value: 'products_price_desc',
                           label: 'Дороже',
                         },
                         {
-                          value: 'dev_products_rating',
+                          value: 'products_rating',
                           label: 'По рейтингу',
                         },
                       ]}

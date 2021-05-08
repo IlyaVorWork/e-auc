@@ -29,6 +29,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const { enqueueSnackbar } = useSnackbar()
   const theme = useTheme()
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
+  const [time, setTime] = useState<number>(0)
   const [itemCount, setItemCount] = useState<number>(1)
   useEffect(() => setItemCount(1), [product])
 
@@ -57,16 +58,22 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
 
   const expireDate = new Date(expire_date).getTime()
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [time, setTime] = useState<number>(0)
-
   setInterval(() => setTime(expireDate - Date.now()), 1000)
 
   const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
-  const hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
-  const mins = ((time / 1000 / 60) % 60).toFixed(0)
-  const sec = ((time / 1000) % 60).toFixed(0)
-
+  let hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
+  let mins = ((time / 1000 / 60) % 60).toFixed(0)
+  let sec = ((time / 1000) % 60).toFixed(0)
+  if (hours.toString().length === 1) {
+    hours = '0' + hours
+  }
+  if (mins.toString().length === 1) {
+    mins = '0' + mins
+  }
+  if (sec.toString().length === 1) {
+    sec = '0' + sec
+  }
+  console.log(time)
   const last = time <= 0
 
   const toCart = async () => {
@@ -122,7 +129,9 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
               </Grid>
               <Grid item>
                 <Typography variant={'h1'}>
-                  {days + ':' + hours + ':' + mins + ':' + sec}
+                  {last
+                    ? '00:00:00:00'
+                    : days + ':' + hours + ':' + mins + ':' + sec}
                 </Typography>
               </Grid>
               <Grid item>

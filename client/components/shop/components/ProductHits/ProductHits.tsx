@@ -9,7 +9,7 @@ const ProductHits = connectInfiniteHits(({ hits, getCount }) => {
   useEffect(() => {
     getCount(hits.length)
   }, [hits?.length, getCount])
-  console.log(hits)
+
   const classes = useStyles()
   const theme = useTheme()
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
