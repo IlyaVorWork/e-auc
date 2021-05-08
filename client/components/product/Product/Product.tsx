@@ -73,14 +73,20 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   if (sec.toString().length === 1) {
     sec = '0' + sec
   }
-  console.log(time)
   const last = time <= 0
 
   const toCart = async () => {
     await buy(dispatch, id, state.cart, available, enqueueSnackbar)
     if (itemCount > 1) {
       const currentCount = countOfItem(id, state.cart)
-      await updateCount(dispatch, state.cart, id, currentCount + itemCount - 1)
+      if (currentCount !== available) {
+        await updateCount(
+          dispatch,
+          state.cart,
+          id,
+          currentCount + itemCount - 1
+        )
+      }
     }
   }
 
