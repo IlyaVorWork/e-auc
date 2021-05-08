@@ -85,7 +85,7 @@
       "collection": "tickets"
     },
     "bids": {
-      "via": "users_permissions_user",
+      "via": "user",
       "collection": "bid"
     }
   }
