@@ -13,6 +13,9 @@ const ME = gql`
         id
         email
       }
+      role {
+        name
+      }
       addresses {
         id
         address
@@ -27,6 +30,14 @@ const ME = gql`
         products
         createdAt
         address
+      }
+      bids {
+        id
+        price
+        product {
+          id
+          name
+        }
       }
     }
   }

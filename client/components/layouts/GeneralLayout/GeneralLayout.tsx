@@ -28,6 +28,8 @@ import { useRouter } from 'next/router'
 
 const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
   const { state, dispatch } = useContext(AppContext)
+  console.log(state)
+  console.log(state.user?.role.name == 'Admin')
   const { dispatch: themeDispatch } = useContext(ThemeContext)
   const { isAuthenticated } = state
   const { enqueueSnackbar } = useSnackbar()
@@ -104,6 +106,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                   e<span className={classes.partLogo}>Auc</span>.
                 </Link>
               </Grid>
+              {state.user?.role.name === 'Admin' ? <Grid>Админка</Grid> : null}
               <Grid>
                 <IconButton
                   icon={'dehaze'}
@@ -235,6 +238,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                 e<span className={classes.partLogo}>Auc</span>.
               </Link>
             </Grid>
+            {state.user?.role.name === 'Admin' ? <Grid>Админка</Grid> : null}
             <Grid className={classes.themeSwitch}>
               <Grid spacing={1}>
                 {theme.name == 'Light Theme' ? (

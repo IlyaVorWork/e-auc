@@ -1,7 +1,7 @@
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { darken } from '@material-ui/core/styles/colorManipulator'
 
-export const useStyles = makeStyles(() =>
+export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {},
     side: {
@@ -23,7 +23,7 @@ export const useStyles = makeStyles(() =>
       display: 'flex',
     },
     buyButton: {
-      color: 'white',
+      color: theme.palette.primary.contrastText,
     },
     countInput: {
       width: 100,

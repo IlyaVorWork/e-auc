@@ -19,6 +19,14 @@ const PRODUCTS = gql`
       }
       description
       expire_date
+      bids {
+        id
+        price
+        user {
+          id
+          username
+        }
+      }
     }
   }
 `

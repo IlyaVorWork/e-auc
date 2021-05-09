@@ -11,13 +11,18 @@ import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
 
 import { useStyles } from './Product.styles'
-import { buy, countOfItem, updateCount } from '@utils/shop'
+// import { buy, countOfItem, updateCount } from '@utils/shop'
+import CREATE_BID from '@graphql/mutations/CreateBid'
 import { ShopContext } from '@providers/ShopProvider'
 import { useSnackbar } from 'notistack'
 import { Button, IconButton, Input, Link } from '@ui/index'
 import CartMini from '@components/shop/components/CartMini'
 import clsx from 'clsx'
 import ProductCard from '@components/shop/components/ProductCard'
+import { useMutation } from '@apollo/client'
+import { AppContext } from '@providers/AppProvider'
+import { makeBid, newPrice } from '@utils/account'
+import UPDATE_PRICE from '@graphql/mutations/UpdatePrice'
 
 interface IProductComponent {
   product: IProductProps
@@ -26,22 +31,25 @@ interface IProductComponent {
 const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const classes = useStyles()
   const { state, dispatch } = useContext(ShopContext)
+  const { state: appState, dispatch: appDispatch } = useContext(AppContext)
   const { enqueueSnackbar } = useSnackbar()
   const theme = useTheme()
-  const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
-  const [time, setTime] = useState<number>(0)
-  const [itemCount, setItemCount] = useState<number>(1)
-  useEffect(() => setItemCount(1), [product])
 
-  const changeCount = useCallback(
+  const [createBid] = useMutation(CREATE_BID)
+  const [updatePrice] = useMutation(UPDATE_PRICE)
+  const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
+  const [time, setTime] = useState<number>(1)
+  const [bidPrice, setBidPrice] = useState<number>(1)
+  const [disable, setDisable] = useState<boolean>(false)
+  useEffect(() => setBidPrice(1), [product])
+
+  const changeBidPrice = useCallback(
     (value: number) => {
-      if (value > 0 && value <= product?.available) {
-        setItemCount(value)
-        return
-      }
-      if (value > product?.available) setItemCount(1)
+      setBidPrice(value)
+      console.log(bidPrice)
+      return
     },
-    [state.cart, dispatch, itemCount, product]
+    [state.cart, dispatch, bidPrice, product]
   )
   if (!product) return <Loader />
   const {
@@ -58,12 +66,16 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
 
   const expireDate = new Date(expire_date).getTime()
 
-  setInterval(() => setTime(expireDate - Date.now()), 1000)
+  if (time > 1000) {
+    setInterval(() => setTime(expireDate - Date.now()), 1000)
+  } else {
+    setInterval(() => setTime(expireDate - Date.now()), 1)
+  }
 
-  const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
-  let hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
-  let mins = ((time / 1000 / 60) % 60).toFixed(0)
-  let sec = ((time / 1000) % 60).toFixed(0)
+  const days = Math.floor(time / 1000 / 60 / 60 / 24)
+  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
+  let mins = Math.floor((time / 1000 / 60) % 60).toString()
+  let sec = Math.floor((time / 1000) % 60).toString()
   if (hours.toString().length === 1) {
     hours = '0' + hours
   }
@@ -73,19 +85,45 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   if (sec.toString().length === 1) {
     sec = '0' + sec
   }
-  const last = time <= 0
+  const last = time < 0
+  // const toCart = async () => {
+  //   await buy(dispatch, id, state.cart, available, enqueueSnackbar)
+  //   if (itemCount > 1) {
+  //     const currentCount = countOfItem(id, state.cart)
+  //     if (currentCount !== available) {
+  //       await updateCount(
+  //         dispatch,
+  //         state.cart,
+  //         id,
+  //         currentCount + itemCount - 1
+  //       )
+  //     }
+  //   }
+  // }
 
-  const toCart = async () => {
-    await buy(dispatch, id, state.cart, available, enqueueSnackbar)
-    if (itemCount > 1) {
-      const currentCount = countOfItem(id, state.cart)
-      if (currentCount !== available) {
-        await updateCount(
-          dispatch,
-          state.cart,
-          id,
-          currentCount + itemCount - 1
+  const bid = async () => {
+    if (bidPrice <= price) {
+      enqueueSnackbar(
+        'Ставка не может быть меньше или равна текущей цене товара',
+        { variant: 'warning' }
+      )
+    } else {
+      if (bidPrice > 500000) {
+        enqueueSnackbar('Ставка не может превышать 500000 рублей', {
+          variant: 'warning',
+        })
+      } else {
+        setDisable(true)
+        enqueueSnackbar(
+          'Пожалуйста, дождитесь принятия ставки, это займёт какое-то время.',
+          { variant: 'info' }
         )
+        await makeBid(appDispatch, createBid, appState.user, bidPrice, id)
+        await newPrice(updatePrice, bidPrice, id)
+        enqueueSnackbar('Ставка принята, спасибо за ожидание!', {
+          variant: 'success',
+        })
+        await location.reload()
       }
     }
   }
@@ -152,51 +190,27 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                     <Button
                       color={'primary'}
                       className={classes.buyButton}
-                      onClick={toCart}
+                      onClick={bid}
                       size={'large'}
                       variant={last ? 'contained' : 'text'}
-                      disabled={last}
+                      disabled={last || disable}
                     >
-                      {last ? `Торги завершены` : `В корзину`}
+                      {last ? `Торги завершены` : `Сделать ставку`}
                     </Button>
                   </Grid>
                   {available > 0 ? (
                     <Grid item>
                       <Grid container alignItems={'center'}>
-                        <Grid item>
-                          <IconButton
-                            size={'medium'}
-                            icon={'minus'}
-                            disabled={itemCount <= 1}
-                            onClick={() =>
-                              itemCount > 1 && changeCount(+itemCount - 1)
-                            }
-                          />
-                        </Grid>
-                        <Grid item>
-                          <Input
-                            type={'number'}
-                            id={id + '_count'}
-                            label={'Количество'}
-                            value={itemCount}
-                            disabled={true}
-                            onChange={(e) => {
-                              changeCount(+e.currentTarget.value)
-                            }}
-                            className={classes.countInput}
-                          />
-                        </Grid>
-                        <Grid item>
-                          <IconButton
-                            size={'medium'}
-                            icon={'plus'}
-                            disabled={itemCount === available}
-                            onClick={() =>
-                              itemCount < available &&
-                              changeCount(+itemCount + 1)
-                            }
-                          />
-                        </Grid>
+                        <Input
+                          type={'text'}
+                          id={id + '_count'}
+                          label={'Цена ставки'}
+                          value={bidPrice}
+                          onChange={(e) => {
+                            changeBidPrice(+e.currentTarget.value)
+                          }}
+                          className={classes.countInput}
+                        />
                       </Grid>
                     </Grid>
                   ) : null}

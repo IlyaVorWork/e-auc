@@ -40,6 +40,7 @@ const Footer: FunctionComponent = () => {
           state.user,
           values.email
         )
+        console.log(data)
         if (!isAuthenticated) {
           enqueueSnackbar('Вы не авторизованы!', {
             variant: 'error',
@@ -73,6 +74,7 @@ const Footer: FunctionComponent = () => {
         state.user,
         state.user?.email_subscriber?.id
       )
+      console.log(data)
       if (!data.deleteEmailSubscriber) {
         enqueueSnackbar(errorMessage(data), {
           variant: 'error',

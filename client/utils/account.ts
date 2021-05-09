@@ -146,6 +146,57 @@ export const makeOrder = async (
   }
 }
 
+// === BIDS
+
+export const makeBid = async (dispatchApp, createBid, user, price, id) => {
+  try {
+    const { data } = await createBid({
+      variables: {
+        input: {
+          data: {
+            price: price,
+            user: user.id,
+            product: id,
+          },
+        },
+      },
+    })
+    if (data.createBid) {
+      dispatchApp(
+        ACTIONS.updateUserSuccess({
+          ...user,
+          bids: user?.bids.concat([data.createBid.bid]),
+        })
+      )
+    }
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+// === PRODUCT
+
+export const newPrice = async (updatePrice, price, id) => {
+  try {
+    const { data } = await updatePrice({
+      variables: {
+        input: {
+          where: {
+            id: id,
+          },
+          data: {
+            price: price,
+          },
+        },
+      },
+    })
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 // === ORDERS
 
 export const makeDate = (s) => {

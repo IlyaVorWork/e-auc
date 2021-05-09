@@ -15,6 +15,7 @@ const SortingSelector: FunctionComponent<ISortingSelectorProps> = connectSortBy(
   ({ items, refine }) => {
     const classes = useStyles()
     const { state, dispatch } = useContext(ShopContext)
+    console.log(state)
 
     const handleChange = (event) => {
       dispatch(setSorting(event.target.value))

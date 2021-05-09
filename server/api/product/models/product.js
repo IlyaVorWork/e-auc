@@ -29,18 +29,18 @@ module.exports = {
         strapi.services.algolia.saveObject(result, ppasc);
       } else {
         strapi.services.algolia.deleteObject(result.id, index);
-        strapi.services.algolia.deleteObject(result, ppd);
-        strapi.services.algolia.deleteObject(result, pr);
-        strapi.services.algolia.deleteObject(result, ppdesc);
-        strapi.services.algolia.deleteObject(result, ppasc);
+        strapi.services.algolia.deleteObject(result.id, ppd);
+        strapi.services.algolia.deleteObject(result.id, pr);
+        strapi.services.algolia.deleteObject(result.id, ppdesc);
+        strapi.services.algolia.deleteObject(result.id, ppasc);
       }
     },
     afterDelete(result, params) {
       strapi.services.algolia.deleteObject(result.id, index);
-      strapi.services.algolia.deleteObject(result, ppd);
-      strapi.services.algolia.deleteObject(result, pr);
-      strapi.services.algolia.deleteObject(result, ppdesc);
-      strapi.services.algolia.deleteObject(result, ppasc);
+      strapi.services.algolia.deleteObject(result.id, ppd);
+      strapi.services.algolia.deleteObject(result.id, pr);
+      strapi.services.algolia.deleteObject(result.id, ppdesc);
+      strapi.services.algolia.deleteObject(result.id, ppasc);
     },
   },
 };

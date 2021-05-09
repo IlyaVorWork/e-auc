@@ -25,6 +25,7 @@ export interface IUserDataProps {
   orders: any
   addresses: any
   email_subscriber: any
+  role: any
 }
 
 export interface IAppProps {

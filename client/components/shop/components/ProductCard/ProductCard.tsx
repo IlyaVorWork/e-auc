@@ -33,12 +33,21 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
 
   setInterval(() => setTime(expireDate - Date.now()), 1000)
 
-  const days = (time / 1000 / 60 / 60 / 24).toFixed(0)
-  const hours = ((time / 1000 / 60 / 60) % 24).toFixed(0)
-  const mins = ((time / 1000 / 60) % 60).toFixed(0)
-  const sec = ((time / 1000) % 60).toFixed(0)
+  const days = Math.floor(time / 1000 / 60 / 60 / 24)
+  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
+  let mins = Math.floor((time / 1000 / 60) % 60).toString()
+  let sec = Math.floor((time / 1000) % 60).toString()
+  if (hours.toString().length === 1) {
+    hours = '0' + hours
+  }
+  if (mins.toString().length === 1) {
+    mins = '0' + mins
+  }
+  if (sec.toString().length === 1) {
+    sec = '0' + sec
+  }
 
-  const last = time <= 0
+  const last = time < 0
 
   const imgUrl = image.formats.thumbnail.url
   const productLink = `/products/${id}`
