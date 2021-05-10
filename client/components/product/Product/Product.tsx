@@ -124,7 +124,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
         enqueueSnackbar('Ставка принята, спасибо за ожидание!', {
           variant: 'success',
         })
-        router.push('/my-account/?panel=6')
+        location.reload()
       }
     }
   }
