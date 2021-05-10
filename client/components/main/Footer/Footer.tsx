@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useCallback, useContext } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useContext,
+  useState,
+} from 'react'
 import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { IconButton, Link, Input, Button } from '@ui/index'
 
@@ -27,11 +32,13 @@ const Footer: FunctionComponent = () => {
   const { state, dispatch } = useContext(AppContext)
   console.log(dispatch)
   const { isAuthenticated } = state
+  const [disable, setDisable] = useState<boolean>(false)
   const [createEmailSubscriber] = useMutation(CREATE_EMAIL_SUBSCRIBER)
   const [deleteEmailSubscriber] = useMutation(DELETE_EMAIL_SUBSCRIBER)
 
   const handleSubscribe = useCallback(
     async (values) => {
+      setDisable(true)
       enqueueSnackbar('Пожалуйста, подождите', { variant: 'info' })
       try {
         const data = await subscribeEmail(
@@ -40,7 +47,6 @@ const Footer: FunctionComponent = () => {
           state.user,
           values.email
         )
-        console.log(data)
         if (!isAuthenticated) {
           enqueueSnackbar('Вы не авторизованы!', {
             variant: 'error',
@@ -162,6 +168,7 @@ const Footer: FunctionComponent = () => {
                 <Button
                   className={classes.subscribeButton}
                   onClick={handleUnsubscribe}
+                  disabled={disable}
                   style={
                     xsWidth
                       ? {

@@ -23,6 +23,7 @@ import { useMutation } from '@apollo/client'
 import { AppContext } from '@providers/AppProvider'
 import { makeBid, newPrice } from '@utils/account'
 import UPDATE_PRICE from '@graphql/mutations/UpdatePrice'
+import { router } from 'next/client'
 
 interface IProductComponent {
   product: IProductProps
@@ -123,7 +124,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
         enqueueSnackbar('Ставка принята, спасибо за ожидание!', {
           variant: 'success',
         })
-        await location.reload()
+        router.push('/my-account/?panel=6')
       }
     }
   }
