@@ -14,6 +14,8 @@ const Cart: FunctionComponent = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(ShopContext)
   const cart = formCart(state.cart, state.products).filter((x) => x)
+  console.log(state.cart)
+  console.log(state.products)
   const dropCart = async () => await clearCart(dispatch)
   const total = useMemo(() => getTotal(cart), [cart])
   const [checkout, setCheckout] = useState<boolean>(false)

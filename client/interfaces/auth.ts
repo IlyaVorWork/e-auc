@@ -26,6 +26,7 @@ export interface IUserDataProps {
   addresses: any
   email_subscriber: any
   role: any
+  bids: any
 }
 
 export interface IAppProps {

@@ -175,6 +175,28 @@ export const makeBid = async (dispatchApp, createBid, user, price, id) => {
   }
 }
 
+// === BID
+
+export const updateBidStatus = async (updateBid, id) => {
+  try {
+    const { data } = await updateBid({
+      variables: {
+        input: {
+          where: {
+            id: id,
+          },
+          data: {
+            added: true,
+          },
+        },
+      },
+    })
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 // === PRODUCT
 
 export const newPrice = async (updatePrice, price, id) => {

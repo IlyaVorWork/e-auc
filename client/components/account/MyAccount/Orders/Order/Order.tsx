@@ -57,7 +57,7 @@ const Order: FunctionComponent<IOrderComponentProps> = ({ order }) => {
         <Grid item>
           <Grid container justify={'space-between'} alignItems={'center'}>
             <Grid item>
-              <Typography variant={'h4'}>Дата</Typography>
+              <Typography variant={'h4'}>Дата (UTC)</Typography>
             </Grid>
             <Grid item>
               <Typography variant={'h5'}>{date}</Typography>

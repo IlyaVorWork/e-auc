@@ -22,6 +22,7 @@ import Settings from './Settings'
 import Cart from './Cart'
 
 import { useStyles } from './MyAccount.styles'
+import Bids from '@components/account/MyAccount/Bids'
 import Wishlist from '@components/account/MyAccount/Wishlist'
 import Orders from '@components/account/MyAccount/Orders'
 import Addresses from '@components/account/MyAccount/Addresses'
@@ -43,7 +44,7 @@ const MyAccount: FunctionComponent = () => {
 
   useEffect(() => {
     const p = router.query?.panel
-    if (p && +p >= 0 && +p <= 5) setValue(+p)
+    if (p && +p >= 0 && +p <= 6) setValue(+p)
   }, [router.query?.panel])
 
   const handleChange = (_: ChangeEvent<unknown>, newValue: number) => {
@@ -94,6 +95,7 @@ const MyAccount: FunctionComponent = () => {
               <Tab label="Избранное" {...a11yProps(3)} />
               <Tab label="Адреса" {...a11yProps(4)} />
               <Tab label="Настройки" {...a11yProps(5)} />
+              <Tab label="Ставки" {...a11yProps(6)} />
             </Tabs>
           </Grid>
           <Grid item xs={isSmallWidth ? 12 : 10}>
@@ -114,6 +116,9 @@ const MyAccount: FunctionComponent = () => {
             </TabPanel>
             <TabPanel value={value} index={5}>
               <Settings />
+            </TabPanel>
+            <TabPanel value={value} index={6}>
+              <Bids />
             </TabPanel>
           </Grid>
         </Grid>

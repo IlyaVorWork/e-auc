@@ -23,6 +23,10 @@
     "product": {
       "model": "product",
       "via": "bids"
+    },
+    "added": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

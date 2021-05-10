@@ -59,3 +59,11 @@ export interface IOrderProps {
   address: string
   createdAt: string
 }
+
+export interface IBidProps {
+  id: string
+  price: number
+  createdAt: string
+  product: any
+  added: boolean
+}

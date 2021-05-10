@@ -1,13 +1,16 @@
 import { gql } from '@apollo/client'
 
-const ProductBids = gql`
+const PRODUCT_BIDS = gql`
   query productbids($id: ID!) {
     product(id: $id) {
       id
       name
       price
-      bids {
+      available
+      bids(sort: "price") {
+        createdAt
         price
+        added
         user {
           id
           username
@@ -17,4 +20,4 @@ const ProductBids = gql`
   }
 `
 
-export default ProductBids
+export default PRODUCT_BIDS
