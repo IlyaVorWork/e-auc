@@ -11,6 +11,7 @@ const ProductPage: NextPage = () => {
   const router = useRouter()
   console.log(router)
   const productId = router.query.id
+  console.log(productId)
   const { data, loading } = useQuery(PRODUCT, {
     variables: {
       id: productId,
