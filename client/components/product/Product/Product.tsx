@@ -23,7 +23,6 @@ import { useMutation } from '@apollo/client'
 import { AppContext } from '@providers/AppProvider'
 import { makeBid, newPrice } from '@utils/account'
 import UPDATE_PRICE from '@graphql/mutations/UpdatePrice'
-import { router } from 'next/client'
 
 interface IProductComponent {
   product: IProductProps
