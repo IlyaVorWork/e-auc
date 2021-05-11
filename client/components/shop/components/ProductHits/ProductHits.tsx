@@ -6,6 +6,7 @@ import ProductCard from '@components/shop/components/ProductCard/ProductCard'
 import { useStyles } from '@components/shop/Shop/Shop.styles'
 
 const ProductHits = connectInfiniteHits(({ hits, getCount }) => {
+  console.log(hits)
   useEffect(() => {
     getCount(hits.length)
   }, [hits?.length, getCount])

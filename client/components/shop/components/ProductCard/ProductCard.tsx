@@ -1,19 +1,17 @@
 import React, { FunctionComponent, useContext, useState } from 'react'
 import { Paper, Typography, Grid, Tooltip } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
-import { useSnackbar } from 'notistack'
 
-import { IconButton, Link, Button } from '@ui/index'
+import { IconButton, Link } from '@ui/index'
 import {
   IProductProps,
   ICategoryProps,
   IProductCardProps,
 } from '@interfaces/shop'
-import { buy, inWishlist, toggleWishlist } from '@utils/shop'
+import { inWishlist, toggleWishlist } from '@utils/shop'
 import { ShopContext } from '@providers/ShopProvider'
 
 import { useStyles } from './ProductCard.styles'
-import clsx from 'clsx'
 
 const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
   const {
@@ -56,13 +54,10 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
 
   const { state, dispatch } = useContext(ShopContext)
 
-  const { enqueueSnackbar } = useSnackbar()
-
   const toggleWish = async () =>
     await toggleWishlist(dispatch, id, state.wishlist)
 
   const inList = inWishlist(state.wishlist, id)
-  // const inCart = inWishlist(state.cart, id)
 
   // const rfc = async () => {
   //   try {
@@ -73,9 +68,6 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
   //     console.log(error)
   //   }
   // }
-
-  const toCart = async () =>
-    await buy(dispatch, id, state.cart, available, enqueueSnackbar)
 
   return (
     <Paper className={classes.root} square={true} aria-disabled={available < 1}>
@@ -162,32 +154,6 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
                     precision={0.5}
                     className={classes.rating}
                   />
-                  {last ? (
-                    <Button
-                      disabled={true}
-                      variant={'text'}
-                      className={classes.cartButton}
-                    >
-                      Торги закрыты
-                    </Button>
-                  ) : (
-                    <Button
-                      // icon={inCart ? 'cartRemove' : 'cart'}
-                      // color={inCart ? 'secondary' : 'primary'}
-                      variant={'text'}
-                      className={clsx(
-                        classes.cartButton,
-                        classes.primaryButton
-                      )}
-                      // onClick={inCart ? rfc : toCart}
-                      color={'primary'}
-                      icon={'cart'}
-                      onClick={toCart}
-                      // inCart ? 'Из корзины' : 'В корзину'
-                    >
-                      Сделать ставку
-                    </Button>
-                  )}
                 </Grid>
               </Grid>
             </Grid>

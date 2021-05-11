@@ -11,12 +11,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       boxShadow: theme.shadows['1'],
       '&:hover': {
         boxShadow: theme.shadows['4'],
-        '& $rating': {
-          display: 'none',
-        },
-        '& $cartButton': {
-          display: 'flex',
-        },
       },
     },
     name: {
@@ -65,10 +59,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         height: '1.2rem',
       },
       display: 'flex',
-      transition: '.1s ease-in-out',
-    },
-    cartButton: {
-      display: 'none',
       transition: '.1s ease-in-out',
     },
     primaryButton: {
