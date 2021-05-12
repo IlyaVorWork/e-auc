@@ -66,6 +66,25 @@ export const fetchShop = async (
   }
 }
 
+export const timer = (expire_date) => {
+  const expireDate = new Date(expire_date).getTime()
+  const time = expireDate - Date.now()
+  const days = Math.floor(time / 1000 / 60 / 60 / 24)
+  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
+  let mins = Math.floor((time / 1000 / 60) % 60).toString()
+  let sec = Math.floor((time / 1000) % 60).toString()
+  if (hours.toString().length === 1) {
+    hours = '0' + hours
+  }
+  if (mins.toString().length === 1) {
+    mins = '0' + mins
+  }
+  if (sec.toString().length === 1) {
+    sec = '0' + sec
+  }
+  return { time, days, hours, mins, sec }
+}
+
 // === CART
 
 export const countOfItem = (id, cart) => {

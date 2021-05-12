@@ -146,14 +146,7 @@ const Main: FunctionComponent = () => {
                   >
                     Мобильные устройства и аксессуары
                   </Typography>
-                  {/*<Typography*/}
-                  {/*  variant={'subtitle1'}*/}
-                  {/*  align={'left'}*/}
-                  {/*  className={classes.cardCount}*/}
-                  {/*>*/}
-                  {/*  Игровые консоли*/}
-                  {/*</Typography>*/}
-                  <Button href={'#'} className={classes.button}>
+                  <Button href={'/shop'} className={classes.button}>
                     Посмотреть товары
                   </Button>
                 </Grid>
@@ -165,14 +158,7 @@ const Main: FunctionComponent = () => {
                   >
                     Радиоуправляемая техника
                   </Typography>
-                  {/*<Typography*/}
-                  {/*  variant={'subtitle1'}*/}
-                  {/*  align={'left'}*/}
-                  {/*  className={classes.cardCount}*/}
-                  {/*>*/}
-                  {/*  Игровые консоли*/}
-                  {/*</Typography>*/}
-                  <Button href={'#'} className={classes.button}>
+                  <Button href={'/shop'} className={classes.button}>
                     Посмотреть товары
                   </Button>
                 </Grid>
@@ -186,14 +172,7 @@ const Main: FunctionComponent = () => {
                   >
                     Компьютерная техника
                   </Typography>
-                  {/*<Typography*/}
-                  {/*  variant={'subtitle1'}*/}
-                  {/*  align={'left'}*/}
-                  {/*  className={classes.cardCount}*/}
-                  {/*>*/}
-                  {/*  Игровые консоли*/}
-                  {/*</Typography>*/}
-                  <Button href={'#'} className={classes.button}>
+                  <Button href={'/shop'} className={classes.button}>
                     Посмотреть товары
                   </Button>
                 </Grid>
@@ -205,14 +184,7 @@ const Main: FunctionComponent = () => {
                   >
                     Игровые консоли
                   </Typography>
-                  {/*<Typography*/}
-                  {/*  variant={'subtitle1'}*/}
-                  {/*  align={'left'}*/}
-                  {/*  className={classes.cardCount}*/}
-                  {/*>*/}
-                  {/*  Игровые консоли*/}
-                  {/*</Typography>*/}
-                  <Button href={'#'} className={classes.button}>
+                  <Button href={'/shop'} className={classes.button}>
                     Посмотреть товары
                   </Button>
                 </Grid>

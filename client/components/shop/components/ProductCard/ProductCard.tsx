@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useContext, useState } from 'react'
 import { Paper, Typography, Grid, Tooltip } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
+import { timer } from '@utils/shop'
 
 import { IconButton, Link } from '@ui/index'
 import {
@@ -25,27 +26,19 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
     expire_date,
   }: IProductProps = hit
 
-  const expireDate = new Date(expire_date).getTime()
+  const [aboba, setAboba] = useState<number>(0)
 
-  const [time, setTime] = useState<number>(0)
+  setInterval(() => {
+    if (aboba == 0) {
+      setAboba(1)
+    } else {
+      setAboba(0)
+    }
+  }, 1000)
 
-  setInterval(() => setTime(expireDate - Date.now()), 1000)
+  const data = timer(expire_date)
 
-  const days = Math.floor(time / 1000 / 60 / 60 / 24)
-  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
-  let mins = Math.floor((time / 1000 / 60) % 60).toString()
-  let sec = Math.floor((time / 1000) % 60).toString()
-  if (hours.toString().length === 1) {
-    hours = '0' + hours
-  }
-  if (mins.toString().length === 1) {
-    mins = '0' + mins
-  }
-  if (sec.toString().length === 1) {
-    sec = '0' + sec
-  }
-
-  const last = time < 0
+  const last = data.time < 0
 
   const imgUrl = image.formats.thumbnail.url
   const productLink = `/products/${id}`
@@ -58,16 +51,6 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
     await toggleWishlist(dispatch, id, state.wishlist)
 
   const inList = inWishlist(state.wishlist, id)
-
-  // const rfc = async () => {
-  //   try {
-  //     const data = await removeFromCart(dispatch, id, state.cart)
-  //     if (data) return
-  //     else enqueueSnackbar('Возникла ошибка', { variant: 'error' })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   return (
     <Paper className={classes.root} square={true} aria-disabled={available < 1}>
@@ -110,7 +93,7 @@ const ProductCard: FunctionComponent<IProductCardProps> = ({ hit }: any) => {
         <Grid item>
           {last
             ? 'Торги завершены'
-            : days + ':' + hours + ':' + mins + ':' + sec}
+            : data.days + ':' + data.hours + ':' + data.mins + ':' + data.sec}
         </Grid>
         <Grid item>
           <Grid container direction={'column'} spacing={2}>

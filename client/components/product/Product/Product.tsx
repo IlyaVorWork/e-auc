@@ -11,7 +11,7 @@ import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { Rating } from '@material-ui/lab'
 
 import { useStyles } from './Product.styles'
-// import { buy, countOfItem, updateCount } from '@utils/shop'
+import { timer } from '@utils/shop'
 import CREATE_BID from '@graphql/mutations/CreateBid'
 import { ShopContext } from '@providers/ShopProvider'
 import { useSnackbar } from 'notistack'
@@ -40,7 +40,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const [createBid] = useMutation(CREATE_BID)
   const [updatePrice] = useMutation(UPDATE_PRICE)
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
-  const [time, setTime] = useState<number>(1)
+  const [aboba, setAboba] = useState<number>(0)
   const [bidPrice, setBidPrice] = useState<number>(1)
   const [disable, setDisable] = useState<boolean>(false)
   useEffect(() => setBidPrice(1), [product])
@@ -66,42 +66,17 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
     expire_date,
   }: IProductProps = product
 
-  const expireDate = new Date(expire_date).getTime()
+  setInterval(() => {
+    if (aboba == 0) {
+      setAboba(1)
+    } else {
+      setAboba(0)
+    }
+  }, 1000)
 
-  if (time > 1000) {
-    setInterval(() => setTime(expireDate - Date.now()), 1000)
-  } else {
-    setInterval(() => setTime(expireDate - Date.now()), 1)
-  }
+  const data = timer(expire_date)
 
-  const days = Math.floor(time / 1000 / 60 / 60 / 24)
-  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
-  let mins = Math.floor((time / 1000 / 60) % 60).toString()
-  let sec = Math.floor((time / 1000) % 60).toString()
-  if (hours.toString().length === 1) {
-    hours = '0' + hours
-  }
-  if (mins.toString().length === 1) {
-    mins = '0' + mins
-  }
-  if (sec.toString().length === 1) {
-    sec = '0' + sec
-  }
-  const last = time < 0
-  // const toCart = async () => {
-  //   await buy(dispatch, id, state.cart, available, enqueueSnackbar)
-  //   if (itemCount > 1) {
-  //     const currentCount = countOfItem(id, state.cart)
-  //     if (currentCount !== available) {
-  //       await updateCount(
-  //         dispatch,
-  //         state.cart,
-  //         id,
-  //         currentCount + itemCount - 1
-  //       )
-  //     }
-  //   }
-  // }
+  const last = data.time < 0
 
   const bid = async () => {
     if (bidPrice <= price) {
@@ -177,7 +152,13 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                 <Typography variant={'h1'}>
                   {last
                     ? '00:00:00:00'
-                    : days + ':' + hours + ':' + mins + ':' + sec}
+                    : data.days +
+                      ':' +
+                      data.hours +
+                      ':' +
+                      data.mins +
+                      ':' +
+                      data.sec}
                 </Typography>
               </Grid>
               <Grid item>

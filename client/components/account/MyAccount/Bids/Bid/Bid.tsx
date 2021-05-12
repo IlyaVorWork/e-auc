@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react'
+import React, { FunctionComponent, useContext, useState } from 'react'
 import { Paper, Typography, Grid } from '@material-ui/core'
 
 import { useStyles } from './Bid.styles'
@@ -13,14 +13,17 @@ import { Button } from '@ui/index'
 import { useSnackbar } from 'notistack'
 import { ShopContext } from '@providers/ShopProvider'
 import { buy, updateCount } from '@utils/shop'
+import { useRouter } from 'next/router'
 
 interface IBidComponentProps {
   bid: IBidProps
 }
 
 const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
+  const router = useRouter()
   const { state, dispatch } = useContext(ShopContext)
   const [updateBid] = useMutation(UPDATE_BID)
+  const [time, setTime] = useState<number>(1)
   const { enqueueSnackbar } = useSnackbar()
   const { id, price, product, createdAt } = bid
   const date = makeDate(createdAt)
@@ -32,6 +35,10 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
   })
 
   if (loading) return <Loader />
+
+  const expireDate = new Date(product.expire_date).getTime()
+
+  setInterval(() => setTime(expireDate - Date.now()), 1000)
 
   console.log(data)
   console.log(state)
@@ -80,8 +87,24 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
     )
     await updateCount(dispatch, state.cart, id, 1)
     await updateBidStatus(updateBid, id)
-    location.reload()
+    await router.push('/my-account?panel=1')
+    await router.reload()
   }
+
+  const days = Math.floor(time / 1000 / 60 / 60 / 24)
+  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
+  let mins = Math.floor((time / 1000 / 60) % 60).toString()
+  let sec = Math.floor((time / 1000) % 60).toString()
+  if (hours.toString().length === 1) {
+    hours = '0' + hours
+  }
+  if (mins.toString().length === 1) {
+    mins = '0' + mins
+  }
+  if (sec.toString().length === 1) {
+    sec = '0' + sec
+  }
+  const last = time < 0
 
   return (
     <Paper className={classes.root} square={true}>
@@ -110,6 +133,20 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
             </Grid>
             <Grid item>
               <Typography variant={'h5'}>{`${price} ₽`}</Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container justify={'space-between'} alignItems={'center'}>
+            <Grid item className={classes.title}>
+              <Typography variant={'h4'}>Аукцион закончится через</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant={'h5'}>
+                {last
+                  ? '00:00:00:00'
+                  : days + ':' + hours + ':' + mins + ':' + sec}
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
