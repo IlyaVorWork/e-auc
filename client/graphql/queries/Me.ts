@@ -35,6 +35,7 @@ const ME = gql`
         createdAt
         id
         price
+        added
         product {
           id
           name

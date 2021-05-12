@@ -4,13 +4,34 @@ import { IconButton, Link } from '@ui/index'
 import Bid from '@components/account/MyAccount/Bids/Bid'
 import { useStyles } from '@components/account/MyAccount/Bids/Bids.styles'
 import { AppContext } from '@providers/AppProvider'
+import { timer } from '@utils/shop'
+import { updUser } from '@utils/auth'
+import { useMutation } from '@apollo/client'
+import UPDATE_USER from '@graphql/mutations/UpdateUser'
 
 const Bids: FunctionComponent = () => {
-  const { state } = useContext(AppContext)
+  const { state, dispatch } = useContext(AppContext)
+  const [updateUser] = useMutation(UPDATE_USER)
   console.log(state)
   const classes = useStyles()
   // const theme = useTheme()
   // const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
+
+  const lost = state.user?.bids?.filter((x) => {
+    if (x.added != true && timer(x.product.expire_date).time > 0) {
+      return x
+    }
+  })
+
+  console.log(lost)
+
+  const clearBids = async () => {
+    await updUser(dispatch, updateUser, state?.user?.id, {
+      bids: lost,
+    })
+    return
+  }
+
   return (
     <Grid container direction={'column'} spacing={2} alignItems={'center'}>
       <Grid item xs={12}>
@@ -24,7 +45,7 @@ const Bids: FunctionComponent = () => {
                 <IconButton
                   icon={'clear'}
                   className={classes.icon}
-                  // onClick={clearOrders}
+                  onClick={clearBids}
                 />
               </Tooltip>
             </Grid>

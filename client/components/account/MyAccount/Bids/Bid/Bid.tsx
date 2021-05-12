@@ -40,8 +40,6 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
 
   setInterval(() => setTime(expireDate - Date.now()), 1000)
 
-  console.log(data)
-  console.log(state)
   const winBid = data.product.bids[data.product.bids.length - 1].price
   const win = winBid == price
   const active = new Date(product.expire_date).getTime() - Date.now() > 0

@@ -174,6 +174,8 @@ export const delUser = async (dispatch, deleteUser, payload) => {
 }
 
 export const updUser = async (dispatch, updateUser, id, payload) => {
+  console.log(id)
+  console.log(payload)
   try {
     dispatch(ACTIONS.requestAuth())
     const { data } = await updateUser({

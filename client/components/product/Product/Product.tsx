@@ -101,6 +101,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
           variant: 'success',
         })
         router.push('/my-account?panel=6')
+        router.reload()
       }
     }
   }
