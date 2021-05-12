@@ -84,7 +84,7 @@ const Main: FunctionComponent = () => {
               direction={isSmallWidth ? 'column' : 'row'}
               alignItems={'center'}
             >
-              <Link href={'#'} className={classes.cardLink}>
+              <Link href={'/shop'} className={classes.cardLink}>
                 <Grid className={clsx(classes.card, classes.greenCard)}>
                   <Typography
                     variant={'h1'}
@@ -95,7 +95,7 @@ const Main: FunctionComponent = () => {
                   </Typography>
                 </Grid>
               </Link>
-              <Link href={'#'} className={classes.cardLink}>
+              <Link href={'/shop'} className={classes.cardLink}>
                 <Grid className={clsx(classes.card, classes.redCard)}>
                   <Typography
                     variant={'h1'}
@@ -106,7 +106,7 @@ const Main: FunctionComponent = () => {
                   </Typography>
                 </Grid>
               </Link>
-              <Link href={'#'} className={classes.cardLink}>
+              <Link href={'/shop'} className={classes.cardLink}>
                 <Grid className={clsx(classes.card, classes.yellowCard)}>
                   <Typography
                     variant={'h1'}
@@ -117,7 +117,7 @@ const Main: FunctionComponent = () => {
                   </Typography>
                 </Grid>
               </Link>
-              <Link href={'#'} className={classes.cardLink}>
+              <Link href={'/shop'} className={classes.cardLink}>
                 <Grid className={clsx(classes.card, classes.blueCard)}>
                   <Typography
                     variant={'h1'}
