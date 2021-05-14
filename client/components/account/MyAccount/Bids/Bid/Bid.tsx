@@ -45,14 +45,25 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
   const active = new Date(product.expire_date).getTime() - Date.now() > 0
   let status
   if (active) {
-    status = (
-      <Typography
-        variant={'h5'}
-        className={clsx(classes.activeBid, classes.bidStatus)}
-      >
-        Активная
-      </Typography>
-    )
+    if (win) {
+      status = (
+        <Typography
+          variant={'h5'}
+          className={clsx(classes.activeBid, classes.bidStatus)}
+        >
+          Активная
+        </Typography>
+      )
+    } else {
+      status = (
+        <Typography
+          variant={'h5'}
+          className={clsx(classes.lossBid, classes.bidStatus)}
+        >
+          Проиграна
+        </Typography>
+      )
+    }
   } else {
     if (win) {
       status = (
