@@ -16,10 +16,14 @@ const Bids: FunctionComponent = () => {
   const classes = useStyles()
   // const theme = useTheme()
   // const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
-
-  const lost = state.user?.bids?.filter((x) => {
-    if ((x.added != true && timer(x.product.expire_date).time > 0) || (x.added != true && x.product.bids[x.product.bids.length-1])) {
-      return x
+  const lost = []
+  state.user?.bids?.filter((x) => {
+    if (
+      (x.added != true && timer(x.product.expire_date).time > 0) ||
+      (x.added != true &&
+        x.product.bids[x.product.bids.length - 1].price == x.price)
+    ) {
+      lost.push(x.id)
     }
   })
 

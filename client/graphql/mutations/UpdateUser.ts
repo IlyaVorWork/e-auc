@@ -23,6 +23,29 @@ const UPDATE_USER = gql`
           createdAt
           address
         }
+        bids {
+          createdAt
+          id
+          price
+          added
+          product {
+            id
+            name
+            expire_date
+            image {
+              url
+            }
+            bids {
+              id
+              added
+              user {
+                id
+                username
+              }
+              price
+            }
+          }
+        }
       }
     }
   }

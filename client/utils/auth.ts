@@ -188,6 +188,7 @@ export const updUser = async (dispatch, updateUser, id, payload) => {
         },
       },
     })
+    console.log(data.updateUser?.user)
     if (data.updateUser?.user) {
       dispatch(ACTIONS.updateUserSuccess(data.updateUser.user))
       return data.updateUser

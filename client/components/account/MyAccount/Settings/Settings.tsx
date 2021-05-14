@@ -30,6 +30,7 @@ import { errorMessage } from '@hooks/auth/errorMessage'
 import { useStyles } from './Settings.styles'
 import * as ACTIONS from '@actions/auth'
 import DELETE_USER from '@graphql/mutations/DeleteUser'
+import { useRouter } from 'next/router'
 
 const validationSchema = yup.object({
   username: yup.string().required('Поле не может быть пустым'),
@@ -60,6 +61,7 @@ const formInitialValues = (state) => {
 
 const Settings: FunctionComponent = () => {
   const { state, dispatch } = useContext(AppContext)
+  const router = useRouter()
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
@@ -131,12 +133,9 @@ const Settings: FunctionComponent = () => {
   const confirmDelete = async () => {
     try {
       handleDialog()
-      const data = await delUser(dispatch, deleteUser, state?.user?.id)
-      if (!data.user) {
-        return
-      } else {
-        await logoutUser(dispatch)
-      }
+      await delUser(dispatch, deleteUser, state?.user?.id)
+      await logoutUser(dispatch)
+      router.push('/signin')
     } catch (e) {
       console.log(e)
     }
