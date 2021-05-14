@@ -16,7 +16,7 @@ const Bids: FunctionComponent = () => {
   const classes = useStyles()
   // const theme = useTheme()
   // const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
-  const lost = []
+  const lost: string[] = []
   state.user?.bids?.filter((x) => {
     if (
       (x.added != true && timer(x.product.expire_date).time > 0) ||
