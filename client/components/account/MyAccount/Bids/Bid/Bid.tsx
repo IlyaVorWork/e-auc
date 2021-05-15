@@ -96,7 +96,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
     )
     await updateCount(dispatch, state.cart, id, 1)
     await updateBidStatus(updateBid, id)
-    await router.push('/my-account?panel=1')
+    await router.push('/my-account?panel=2')
     await router.reload()
   }
 

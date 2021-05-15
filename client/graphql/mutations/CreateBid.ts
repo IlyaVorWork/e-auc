@@ -9,6 +9,29 @@ const CREATE_BID = gql`
         user {
           id
           username
+          bids {
+            createdAt
+            id
+            price
+            added
+            product {
+              id
+              name
+              expire_date
+              image {
+                url
+              }
+              bids {
+                id
+                added
+                user {
+                  id
+                  username
+                }
+                price
+              }
+            }
+          }
         }
         product {
           id

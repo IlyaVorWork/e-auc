@@ -148,7 +148,7 @@ export const makeOrder = async (
 
 // === BIDS
 
-export const makeBid = async (dispatchApp, createBid, user, price, id) => {
+export const makeBid = async (createBid, user, price, id) => {
   try {
     const { data } = await createBid({
       variables: {
@@ -161,14 +161,6 @@ export const makeBid = async (dispatchApp, createBid, user, price, id) => {
         },
       },
     })
-    if (data.createBid) {
-      dispatchApp(
-        ACTIONS.updateUserSuccess({
-          ...user,
-          bids: user?.bids.concat([data.createBid.bid]),
-        })
-      )
-    }
     return data
   } catch (e) {
     console.log(e)

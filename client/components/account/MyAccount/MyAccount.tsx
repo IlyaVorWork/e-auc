@@ -90,12 +90,12 @@ const MyAccount: FunctionComponent = () => {
                 label={state.user?.username || <Skeleton width={100} />}
                 {...a11yProps(0)}
               />
-              <Tab label="Корзина" {...a11yProps(1)} />
-              <Tab label="Заказы" {...a11yProps(2)} />
-              <Tab label="Избранное" {...a11yProps(3)} />
-              <Tab label="Адреса" {...a11yProps(4)} />
-              <Tab label="Настройки" {...a11yProps(5)} />
-              <Tab label="Ставки" {...a11yProps(6)} />
+              <Tab label="Ставки" {...a11yProps(1)} />
+              <Tab label="Корзина" {...a11yProps(2)} />
+              <Tab label="Заказы" {...a11yProps(3)} />
+              <Tab label="Избранное" {...a11yProps(4)} />
+              <Tab label="Адреса" {...a11yProps(5)} />
+              <Tab label="Настройки" {...a11yProps(6)} />
             </Tabs>
           </Grid>
           <Grid item xs={isSmallWidth ? 12 : 10}>
@@ -103,22 +103,22 @@ const MyAccount: FunctionComponent = () => {
               <Dashboard />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Cart />
+              <Bids />
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <Orders />
+              <Cart />
             </TabPanel>
             <TabPanel value={value} index={3}>
-              <Wishlist />
+              <Orders />
             </TabPanel>
             <TabPanel value={value} index={4}>
-              <Addresses />
+              <Wishlist />
             </TabPanel>
             <TabPanel value={value} index={5}>
-              <Settings />
+              <Addresses />
             </TabPanel>
             <TabPanel value={value} index={6}>
-              <Bids />
+              <Settings />
             </TabPanel>
           </Grid>
         </Grid>

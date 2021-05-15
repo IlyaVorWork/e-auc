@@ -19,7 +19,9 @@ const Bids: FunctionComponent = () => {
   const lost: string[] = []
   state.user?.bids?.filter((x) => {
     if (
-      (x.added != true && timer(x.product.expire_date).time > 0) ||
+      (x.added != true &&
+        timer(x.product.expire_date).time > 0 &&
+        x.product.bids[x.product.bids.length - 1].price == x.price) ||
       (x.added != true &&
         x.product.bids[x.product.bids.length - 1].price == x.price)
     ) {

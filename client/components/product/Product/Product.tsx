@@ -33,7 +33,8 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const router = useRouter()
   const classes = useStyles()
   const { state, dispatch } = useContext(ShopContext)
-  const { state: appState, dispatch: appDispatch } = useContext(AppContext)
+  const { state: appState } = useContext(AppContext)
+  const { isAuthenticated } = appState
   const { enqueueSnackbar } = useSnackbar()
   const theme = useTheme()
 
@@ -79,30 +80,33 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const last = data.time < 0
 
   const bid = async () => {
-    if (bidPrice <= price) {
-      enqueueSnackbar(
-        'Ставка не может быть меньше или равна текущей цене товара',
-        { variant: 'warning' }
-      )
-    } else {
-      if (bidPrice > 500000) {
-        enqueueSnackbar('Ставка не может превышать 500000 рублей', {
-          variant: 'warning',
-        })
-      } else {
-        setDisable(true)
+    if (isAuthenticated) {
+      if (bidPrice <= price) {
         enqueueSnackbar(
-          'Пожалуйста, дождитесь принятия ставки, это займёт какое-то время.',
-          { variant: 'info' }
+          'Ставка не может быть меньше или равна текущей цене товара',
+          { variant: 'warning' }
         )
-        await makeBid(appDispatch, createBid, appState.user, bidPrice, id)
-        await newPrice(updatePrice, bidPrice, id)
-        enqueueSnackbar('Ставка принята, спасибо за ожидание!', {
-          variant: 'success',
-        })
-        router.push('/my-account?panel=6')
-        router.reload()
+      } else {
+        if (bidPrice > 500000) {
+          enqueueSnackbar('Ставка не может превышать 500000 рублей', {
+            variant: 'warning',
+          })
+        } else {
+          setDisable(true)
+          enqueueSnackbar(
+            'Пожалуйста, дождитесь принятия ставки, это займёт какое-то время.',
+            { variant: 'info' }
+          )
+          await makeBid(createBid, appState.user, bidPrice, id)
+          await newPrice(updatePrice, bidPrice, id)
+          enqueueSnackbar('Ставка принята, спасибо за ожидание!', {
+            variant: 'success',
+          })
+          router.push('/my-account?id=1')
+        }
       }
+    } else {
+      enqueueSnackbar('Вы не авторизованы', { variant: 'error' })
     }
   }
 

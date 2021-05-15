@@ -66,7 +66,7 @@ const CardSection: FunctionComponent<ICardSectionProps> = ({
             throw new Error('Ошибка выполнения')
           } else {
             setBackdropOpen(false)
-            router.push('/my-account?panel=2')
+            router.push('/my-account?panel=3')
             enqueueSnackbar('Заказ размещён', { variant: 'success' })
             resetFunction()
           }
