@@ -36,6 +36,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     buyButton: {
       color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
   })
 )

@@ -196,7 +196,6 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
                 color={'primary'}
                 className={classes.buyButton}
                 onClick={toCart}
-                size={'large'}
               >
                 В корзину
               </Button>
