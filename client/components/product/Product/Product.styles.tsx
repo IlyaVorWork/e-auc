@@ -68,6 +68,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     info: {
       textAlign: 'left',
     },
+    name: {
+      paddingBottom: 12,
+    },
     [theme.breakpoints.down(425.5)]: {
       info: {
         textAlign: 'center',
