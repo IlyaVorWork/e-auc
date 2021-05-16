@@ -32,7 +32,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     button: {
       padding: '12px 24px',
-      color: 'white',
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light + '!important',
+      },
     },
   })
 )

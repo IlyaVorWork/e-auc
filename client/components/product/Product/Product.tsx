@@ -196,11 +196,8 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                 <Grid container justify={'space-between'} alignItems={'center'}>
                   <Grid item>
                     <Button
-                      color={'primary'}
                       className={classes.buyButton}
                       onClick={bid}
-                      size={'large'}
-                      variant={last ? 'contained' : 'text'}
                       disabled={last || disable}
                     >
                       {last ? `Торги завершены` : `Сделать ставку`}
