@@ -44,6 +44,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
   const [aboba, setAboba] = useState<number>(0)
   const [bidPrice, setBidPrice] = useState<number>(1)
   const [disable, setDisable] = useState<boolean>(false)
+  const isMin = useMediaQuery(theme.breakpoints.between(425.5, 768.5))
   useEffect(() => setBidPrice(1), [product])
 
   const changeBidPrice = useCallback(
@@ -110,7 +111,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
     }
   }
 
-  const related = state.products
+  const related4 = state.products
     .filter((x) => {
       if (
         x.categories.some(
@@ -122,6 +123,19 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
       }
     })
     .slice(0, 4)
+
+  const related3 = state.products
+    .filter((x) => {
+      if (
+        x.categories.some(
+          (c) => categories.map((a) => a.name).indexOf(c.name) > -1
+        ) &&
+        x.id !== id
+      ) {
+        return x
+      }
+    })
+    .slice(0, 3)
 
   return (
     <Grid
@@ -144,17 +158,19 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
           <Grid item xs={isSmallWidth ? 12 : 6}>
             <Grid container direction={'column'} spacing={3}>
               <Grid item>
-                <Typography variant={'caption'}>{name}</Typography>
+                <Typography variant={'caption'} className={classes.name}>
+                  {name}
+                </Typography>
                 <Rating
                   name="read-only"
                   value={rating}
                   readOnly
                   precision={0.5}
-                  className={classes.rating}
+                  className={clsx(classes.rating, classes.rating)}
                 />
               </Grid>
               <Grid item>
-                <Typography variant={'h1'}>
+                <Typography variant={'h1'} className={classes.info}>
                   {last
                     ? '00:00:00:00'
                     : data.days +
@@ -167,10 +183,14 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant={'h1'}>{price + ' ₽'}</Typography>
+                <Typography variant={'h1'} className={classes.info}>
+                  {price + ' ₽'}
+                </Typography>
               </Grid>
               <Grid item>
-                <Typography variant={'body2'}>{description}</Typography>
+                <Typography variant={'body2'} className={classes.description}>
+                  {description}
+                </Typography>
               </Grid>
               <Grid item>
                 <Grid container justify={'space-between'} alignItems={'center'}>
@@ -281,21 +301,38 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
           <Grid item xs={12} style={{ marginBottom: '3rem' }}>
             <Grid container direction={'column'} spacing={3}>
               <Grid item style={{ padding: '20px 40px' }}>
-                <Typography variant={'h1'}>Связанные продукты</Typography>
+                <Typography variant={'h1'} className={classes.info}>
+                  Связанные продукты
+                </Typography>
               </Grid>
               <Grid item style={{ padding: '0 0 20px 0' }}>
-                <Grid
-                  container
-                  justify={'space-around'}
-                  alignItems={'center'}
-                  spacing={3}
-                >
-                  {related.map((p) => (
-                    <Grid item key={`product_${p.id}`}>
-                      <ProductCard hit={p} />
-                    </Grid>
-                  ))}
-                </Grid>
+                {isMin ? (
+                  <Grid
+                    container
+                    justify={'space-around'}
+                    alignItems={'center'}
+                    spacing={3}
+                  >
+                    {related3.map((p) => (
+                      <Grid item key={`product_${p.id}`}>
+                        <ProductCard hit={p} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                ) : (
+                  <Grid
+                    container
+                    justify={'space-around'}
+                    alignItems={'center'}
+                    spacing={3}
+                  >
+                    {related4.map((p) => (
+                      <Grid item key={`product_${p.id}`}>
+                        <ProductCard hit={p} />
+                      </Grid>
+                    ))}
+                  </Grid>
+                )}
               </Grid>
             </Grid>
           </Grid>

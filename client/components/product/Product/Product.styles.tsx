@@ -62,5 +62,24 @@ export const useStyles = makeStyles((theme: Theme) =>
         color: darken('#00ACEE', 0.4),
       },
     },
+    description: {
+      textAlign: 'justify',
+    },
+    info: {
+      textAlign: 'left',
+    },
+    [theme.breakpoints.down(425.5)]: {
+      info: {
+        textAlign: 'center',
+      },
+      name: {
+        display: 'flex',
+        textAlign: 'center',
+      },
+      rating: {
+        display: 'flex',
+        justifyContent: 'center',
+      },
+    },
   })
 )
