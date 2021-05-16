@@ -14,6 +14,12 @@ export const useStyles = makeStyles((theme: Theme) =>
         boxShadow: theme.shadows['4'],
       },
     },
+    name: {
+      '& > *': {
+        width: 'fit-content',
+        borderBottom: '1px dashed #e0e0e0',
+      },
+    },
     image: {
       width: 100,
       height: 100,

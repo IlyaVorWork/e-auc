@@ -6,7 +6,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core'
-
 import { useStyles } from './Bid.styles'
 import { IBidProps } from '@interfaces/shop'
 import { makeDate, updateBidStatus } from '@utils/account'
@@ -15,10 +14,10 @@ import clsx from 'clsx'
 import { useMutation, useQuery } from '@apollo/client'
 import PRODUCT_BIDS from '@graphql/queries/ProductBids'
 import UPDATE_BID from '@graphql/mutations/UpdateBid'
-import { Button } from '@ui/index'
+import { Button, Link } from '@ui/index'
 import { useSnackbar } from 'notistack'
 import { ShopContext } from '@providers/ShopProvider'
-import { buy, updateCount } from '@utils/shop'
+import { buy, timer, updateCount } from '@utils/shop'
 import { useRouter } from 'next/router'
 
 interface IBidComponentProps {
@@ -30,7 +29,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
   const router = useRouter()
   const { state, dispatch } = useContext(ShopContext)
   const [updateBid] = useMutation(UPDATE_BID)
-  const [time, setTime] = useState<number>(1)
+  const [aboba, setAboba] = useState<number>(0)
   const { enqueueSnackbar } = useSnackbar()
   const { id, price, product, createdAt } = bid
   const date = makeDate(createdAt)
@@ -44,9 +43,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
 
   if (loading) return <Loader />
 
-  const expireDate = new Date(product.expire_date).getTime()
-
-  setInterval(() => setTime(expireDate - Date.now()), 1000)
+  const productLink = `/products/${product.id}`
 
   const winBid = data.product.bids[data.product.bids.length - 1].price
   const win = winBid == price
@@ -108,20 +105,17 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
     await router.reload()
   }
 
-  const days = Math.floor(time / 1000 / 60 / 60 / 24)
-  let hours = Math.floor((time / 1000 / 60 / 60) % 24).toString()
-  let mins = Math.floor((time / 1000 / 60) % 60).toString()
-  let sec = Math.floor((time / 1000) % 60).toString()
-  if (hours.toString().length === 1) {
-    hours = '0' + hours
-  }
-  if (mins.toString().length === 1) {
-    mins = '0' + mins
-  }
-  if (sec.toString().length === 1) {
-    sec = '0' + sec
-  }
-  const last = time < 0
+  setInterval(() => {
+    if (aboba == 0) {
+      setAboba(1)
+    } else {
+      setAboba(0)
+    }
+  }, 1000)
+
+  const timerData = timer(product.expire_date)
+
+  const last = timerData.time < 0
 
   return (
     <Paper className={classes.root} square={true}>
@@ -157,9 +151,11 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
                 width: '80%',
               }}
             >
-              <Typography variant={'h5'} style={{ textAlign: 'center' }}>
-                {product.name}
-              </Typography>
+              <Link href={productLink} className={classes.name}>
+                <Typography variant={'h5'} style={{ textAlign: 'center' }}>
+                  {product.name}
+                </Typography>
+              </Link>
             </Grid>
           </Grid>
           <Grid item style={{ width: '100%' }}>
@@ -180,8 +176,14 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
               <Grid item>
                 <Typography variant={'h5'}>
                   {last
-                    ? '00:00:00:00'
-                    : days + ':' + hours + ':' + mins + ':' + sec}
+                    ? '0:00:00:00'
+                    : timerData.days +
+                      ':' +
+                      timerData.hours +
+                      ':' +
+                      timerData.mins +
+                      ':' +
+                      timerData.sec}
                 </Typography>
               </Grid>
             </Grid>
@@ -189,7 +191,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
           <Grid item style={{ width: '100%' }}>
             <Grid container justify={'space-between'} alignItems={'center'}>
               <Grid item className={classes.title}>
-                <Typography variant={'h4'}>Дата</Typography>
+                <Typography variant={'h4'}>Дата (UTC)</Typography>
               </Grid>
               <Grid item>
                 <Typography variant={'h5'}>{date}</Typography>
@@ -235,7 +237,11 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
                 <Typography variant={'h4'}>Продукт</Typography>
               </Grid>
               <Grid item>
-                <Typography variant={'h5'}>{product.name}</Typography>
+                <Link href={productLink} className={classes.name}>
+                  <Typography variant={'h5'} style={{ textAlign: 'center' }}>
+                    {product.name}
+                  </Typography>
+                </Link>
               </Grid>
               <Grid item>
                 <img
@@ -264,8 +270,14 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
               <Grid item>
                 <Typography variant={'h5'}>
                   {last
-                    ? '00:00:00:00'
-                    : days + ':' + hours + ':' + mins + ':' + sec}
+                    ? '0:00:00:00'
+                    : timerData.days +
+                      ':' +
+                      timerData.hours +
+                      ':' +
+                      timerData.mins +
+                      ':' +
+                      timerData.sec}
                 </Typography>
               </Grid>
             </Grid>

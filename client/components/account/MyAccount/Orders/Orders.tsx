@@ -1,11 +1,5 @@
 import React, { FunctionComponent, useContext } from 'react'
-import {
-  Grid,
-  Tooltip,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core'
+import { Grid, Tooltip, Typography } from '@material-ui/core'
 import { AppContext } from '@providers/AppProvider'
 import Order from '@components/account/MyAccount/Orders/Order'
 import { IconButton, Link } from '@ui/index'
@@ -24,8 +18,7 @@ const Orders: FunctionComponent = () => {
     })
     return
   }
-  const theme = useTheme()
-  const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
     <Grid container direction={'column'} spacing={2} alignItems={'center'}>
       <Grid item xs={12}>
@@ -47,12 +40,7 @@ const Orders: FunctionComponent = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Grid
-          container
-          spacing={2}
-          direction={isSmallWidth ? 'column' : 'row'}
-          alignItems={isSmallWidth ? 'center' : 'flex-start'}
-        >
+        <Grid container spacing={2} direction={'column'} alignItems={'center'}>
           {state.user?.orders?.length ? (
             state.user.orders.map((o) => (
               <Grid item key={o.id}>
