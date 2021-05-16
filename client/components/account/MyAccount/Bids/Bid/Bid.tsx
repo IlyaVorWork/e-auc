@@ -189,7 +189,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
           <Grid item style={{ width: '100%' }}>
             <Grid container justify={'space-between'} alignItems={'center'}>
               <Grid item className={classes.title}>
-                <Typography variant={'h4'}>Дата и время</Typography>
+                <Typography variant={'h4'}>Дата</Typography>
               </Grid>
               <Grid item>
                 <Typography variant={'h5'}>{date}</Typography>
