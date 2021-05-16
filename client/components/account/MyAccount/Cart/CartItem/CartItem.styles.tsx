@@ -26,6 +26,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       cursor: 'pointer',
     },
     countInput: {
+      '& input': {
+        cursor: 'default !important',
+      },
       width: 100,
       '& > div': {
         marginBottom: 10,

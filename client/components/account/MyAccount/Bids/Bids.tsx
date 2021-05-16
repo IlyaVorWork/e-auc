@@ -62,7 +62,7 @@ const Bids: FunctionComponent = () => {
         <Grid container spacing={2} direction={'column'} alignItems={'center'}>
           {state.user?.bids?.length ? (
             state.user.bids.map((o) => (
-              <Grid item key={o.id}>
+              <Grid item key={o.id} style={{ width: '100%' }}>
                 <Bid bid={o} />
               </Grid>
             ))

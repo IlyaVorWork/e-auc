@@ -7,7 +7,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       minWidth: 200,
     },
     button: {
-      color: theme.palette.primary.light,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
   })
 )

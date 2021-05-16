@@ -40,5 +40,14 @@ export const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.primary.light,
       },
     },
+    [theme.breakpoints.down(425.5)]: {
+      root: {
+        minWidth: '0px !important',
+        width: '100%',
+      },
+      image: {
+        marginLeft: 0,
+      },
+    },
   })
 )

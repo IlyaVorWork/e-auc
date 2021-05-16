@@ -6,7 +6,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: 20,
     },
     button: {
-      color: 'white',
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
     cardInput: {
       maxWidth: 450,

@@ -93,35 +93,16 @@ const CartItem: FunctionComponent<IProductProps> = ({
                 <Grid item>
                   <Grid container alignItems={'center'}>
                     <Grid item>
-                      <IconButton
-                        size={'medium'}
-                        icon={'minus'}
-                        disabled={itemCount <= 1}
-                        onClick={() =>
-                          itemCount > 1 && changeCount(+itemCount - 1)
-                        }
-                      />
-                    </Grid>
-                    <Grid item>
                       <Input
                         type={'number'}
                         id={id + '_count'}
                         label={'Количество'}
+                        disabled={true}
                         value={itemCount}
                         onChange={(e) => {
                           changeCount(+e.currentTarget.value)
                         }}
                         className={classes.countInput}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <IconButton
-                        size={'medium'}
-                        icon={'plus'}
-                        disabled={itemCount === available}
-                        onClick={() =>
-                          itemCount < available && changeCount(+itemCount + 1)
-                        }
                       />
                     </Grid>
                   </Grid>
@@ -146,7 +127,7 @@ const CartItem: FunctionComponent<IProductProps> = ({
             direction={isSmallWidth ? 'row' : 'column'}
             justify={'space-between'}
             alignItems={'center'}
-            spacing={10}
+            spacing={2}
           >
             <Grid item>
               <Tooltip

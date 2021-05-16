@@ -1,5 +1,11 @@
 import React, { FunctionComponent, useContext, useState } from 'react'
-import { Paper, Typography, Grid } from '@material-ui/core'
+import {
+  Paper,
+  Typography,
+  Grid,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core'
 
 import { useStyles } from './Bid.styles'
 import { IBidProps } from '@interfaces/shop'
@@ -20,6 +26,7 @@ interface IBidComponentProps {
 }
 
 const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
+  const theme = useTheme()
   const router = useRouter()
   const { state, dispatch } = useContext(ShopContext)
   const [updateBid] = useMutation(UPDATE_BID)
@@ -27,6 +34,7 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
   const { enqueueSnackbar } = useSnackbar()
   const { id, price, product, createdAt } = bid
   const date = makeDate(createdAt)
+  const isMobile = useMediaQuery(theme.breakpoints.down(425.5))
   const classes = useStyles()
   const { data, loading } = useQuery(PRODUCT_BIDS, {
     variables: {
@@ -117,92 +125,196 @@ const Bid: FunctionComponent<IBidComponentProps> = ({ bid }) => {
 
   return (
     <Paper className={classes.root} square={true}>
-      <Grid container direction={'column'} spacing={2}>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>Продукт</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant={'h5'}>{product.name}</Typography>
-            </Grid>
-            <Grid item>
+      {isMobile ? (
+        <Grid container direction={'column'} alignItems={'center'} spacing={2}>
+          <Grid
+            item
+            container
+            direction={'column'}
+            alignItems={'center'}
+            style={{ width: '80%' }}
+          >
+            <Grid
+              item
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <img
                 src={product.image.url}
                 alt={product.name}
                 className={classes.image}
               />
             </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>Цена</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant={'h5'}>{`${price} ₽`}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>Аукцион закончится через</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant={'h5'}>
-                {last
-                  ? '00:00:00:00'
-                  : days + ':' + hours + ':' + mins + ':' + sec}
+            <Grid
+              item
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '80%',
+              }}
+            >
+              <Typography variant={'h5'} style={{ textAlign: 'center' }}>
+                {product.name}
               </Typography>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>Дата (UTC)</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant={'h5'}>{date}</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>ID</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant={'h5'}>{id}</Typography>
+          <Grid item style={{ width: '100%' }}>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Цена</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{`${price} ₽`}</Typography>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container justify={'space-between'} alignItems={'center'}>
-            <Grid item className={classes.title}>
-              <Typography variant={'h4'}>Статус</Typography>
+          <Grid item style={{ width: '100%' }}>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>До конца аукциона</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>
+                  {last
+                    ? '00:00:00:00'
+                    : days + ':' + hours + ':' + mins + ':' + sec}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>{status}</Grid>
           </Grid>
-        </Grid>
-        {win &&
-        !data.product.bids[data.product.bids.length - 1].added &&
-        !active ? (
+          <Grid item style={{ width: '100%' }}>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Дата и время</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{date}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item style={{ width: '100%' }}>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>ID</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{id}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
           <Grid item>
             <Grid container justify={'space-between'} alignItems={'center'}>
-              <Button
-                color={'primary'}
-                className={classes.buyButton}
-                onClick={toCart}
-              >
-                В корзину
-              </Button>
+              <Grid item>{status}</Grid>
             </Grid>
           </Grid>
-        ) : null}
-      </Grid>
+          {win &&
+          !data.product.bids[data.product.bids.length - 1].added &&
+          !active ? (
+            <Grid item>
+              <Grid container justify={'space-between'} alignItems={'center'}>
+                <Button
+                  color={'primary'}
+                  className={classes.buyButton}
+                  onClick={toCart}
+                >
+                  В корзину
+                </Button>
+              </Grid>
+            </Grid>
+          ) : null}
+        </Grid>
+      ) : (
+        <Grid container direction={'column'} spacing={2}>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Продукт</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{product.name}</Typography>
+              </Grid>
+              <Grid item>
+                <img
+                  src={product.image.url}
+                  alt={product.name}
+                  className={classes.image}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Цена</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{`${price} ₽`}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Аукцион закончится через</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>
+                  {last
+                    ? '00:00:00:00'
+                    : days + ':' + hours + ':' + mins + ':' + sec}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Дата (UTC)</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{date}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>ID</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant={'h5'}>{id}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify={'space-between'} alignItems={'center'}>
+              <Grid item className={classes.title}>
+                <Typography variant={'h4'}>Статус</Typography>
+              </Grid>
+              <Grid item>{status}</Grid>
+            </Grid>
+          </Grid>
+          {win &&
+          !data.product.bids[data.product.bids.length - 1].added &&
+          !active ? (
+            <Grid item>
+              <Grid container justify={'space-between'} alignItems={'center'}>
+                <Button
+                  color={'primary'}
+                  className={classes.buyButton}
+                  onClick={toCart}
+                >
+                  В корзину
+                </Button>
+              </Grid>
+            </Grid>
+          ) : null}
+        </Grid>
+      )}
     </Paper>
   )
 }
