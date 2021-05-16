@@ -30,30 +30,37 @@ const Contacts: FunctionComponent = () => {
   const { state } = useContext(AppContext)
   const { enqueueSnackbar } = useSnackbar()
   const [createTicket] = useMutation(CREATE_TICKET)
+  const { isAuthenticated } = state
 
   const handleSubmit = useCallback(
     async (values) => {
-      enqueueSnackbar('Пожалуйста, подождите', { variant: 'info' })
-      const { message, name, email } = values
-      try {
-        const data = await makeTicket(
-          createTicket,
-          message,
-          name,
-          email,
-          state.user
-        )
-        if (!data.createTicket) {
-          enqueueSnackbar(errorMessage(data), {
+      if (isAuthenticated) {
+        enqueueSnackbar('Пожалуйста, подождите', { variant: 'info' })
+        const { message, name, email } = values
+        try {
+          const data = await makeTicket(
+            createTicket,
+            message,
+            name,
+            email,
+            state.user
+          )
+          if (!data.createTicket) {
+            enqueueSnackbar(errorMessage(data), {
+              variant: 'error',
+            })
+          } else {
+            enqueueSnackbar('Сообщение зарегистрировано!', {
+              variant: 'success',
+            })
+          }
+        } catch (error) {
+          enqueueSnackbar(errorMessage(error), {
             variant: 'error',
           })
-        } else {
-          enqueueSnackbar('Сообщение зарегистрировано!', {
-            variant: 'success',
-          })
         }
-      } catch (error) {
-        enqueueSnackbar(errorMessage(error), {
+      } else {
+        enqueueSnackbar('Вы не авторизованы', {
           variant: 'error',
         })
       }
