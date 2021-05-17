@@ -10,7 +10,6 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/about-us': 'О нас',
   '/delivery': 'Условия доставки',
   '/shop': 'Магазин',
-  '/contacts': 'Контакты',
 }
 
 const Breadcrumbs: FunctionComponent = () => {
