@@ -150,7 +150,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     </Grid>
                     <Grid className={classes.menuItem}>
                       <Link
-                        href={'/my-account?panel=1'}
+                        href={'/my-account?panel=2'}
                         className={classes.link}
                       >
                         Корзина
@@ -158,7 +158,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     </Grid>
                     <Grid className={classes.menuItem}>
                       <Link
-                        href={'/my-account?panel=3'}
+                        href={'/my-account?panel=4'}
                         className={classes.link}
                       >
                         Избранное
@@ -290,7 +290,7 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     </Grid>
                     <Grid className={classes.menuItem}>
                       <Link
-                        href={'/my-account?panel=1'}
+                        href={'/my-account?panel=2'}
                         className={classes.link}
                       >
                         Корзина
@@ -298,15 +298,15 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                     </Grid>
                     <Grid className={classes.menuItem}>
                       <Link
-                        href={'/my-account?panel=3'}
+                        href={'/my-account?panel=4'}
                         className={classes.link}
                       >
                         Избранное
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
-                      <Link href={'/contacts'} className={classes.link}>
-                        Контакты
+                      <Link href={'/about-us'} className={classes.link}>
+                        О нас
                       </Link>
                     </Grid>
                   </>
@@ -323,8 +323,8 @@ const GeneralLayout: FunctionComponent<ILayoutProps> = ({ children }) => {
                       </Link>
                     </Grid>
                     <Grid className={classes.menuItem}>
-                      <Link href={'/contacts'} className={classes.link}>
-                        Контакты
+                      <Link href={'/about-us'} className={classes.link}>
+                        О нас
                       </Link>
                     </Grid>
                   </>
