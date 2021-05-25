@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'flex-start',
     },
     image: {
-      width: '100%',
+      width: '67%',
     },
     rating: {
       '& svg': {
@@ -85,6 +85,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       rating: {
         display: 'flex',
         justifyContent: 'center',
+      },
+      image: {
+        width: '100%',
       },
     },
   })
