@@ -28,7 +28,6 @@ const Main: FunctionComponent = () => {
   const isSmallWidth = useMediaQuery(theme.breakpoints.down('sm'))
   const xsWidth = useMediaQuery(theme.breakpoints.down('xs'))
   const mdWidth = useMediaQuery(theme.breakpoints.down('md'))
-  const isLarge = useMediaQuery(theme.breakpoints.up('xl'))
 
   return (
     <div className={classes.mainContainer}>
@@ -36,7 +35,7 @@ const Main: FunctionComponent = () => {
         <Hidden xsDown>
           <Grid
             item
-            sm={isLarge ? 6 : 12}
+            sm={12}
             className={classes.carouselContainer}
           >
             <Carousel />
