@@ -294,10 +294,5 @@ export const useStyles = makeStyles((theme: Theme) =>
     [theme.breakpoints.up('md')]: {
       card: { margin: '4px 2px' },
     },
-    [theme.breakpoints.up('xl')]: {
-      carouselContainer: {
-        marginLeft: '25%',
-      },
-    },
   })
 )
