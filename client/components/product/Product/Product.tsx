@@ -16,7 +16,6 @@ import CREATE_BID from '@graphql/mutations/CreateBid'
 import { ShopContext } from '@providers/ShopProvider'
 import { useSnackbar } from 'notistack'
 import { Button, IconButton, Input, Link } from '@ui/index'
-import CartMini from '@components/shop/components/CartMini'
 import clsx from 'clsx'
 import ProductCard from '@components/shop/components/ProductCard'
 import { useMutation } from '@apollo/client'
@@ -146,7 +145,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
       spacing={3}
       style={{ marginBottom: '3rem' }}
     >
-      <Grid item xs={12} lg={9}>
+      <Grid item xs={12} lg={12}>
         <Grid container spacing={1} direction={isSmallWidth ? 'column' : 'row'}>
           <Grid
             item
@@ -332,18 +331,6 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
                 )}
               </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} lg={3}>
-        <Grid
-          container
-          className={classes.side}
-          direction={'column'}
-          spacing={3}
-        >
-          <Grid item>
-            <CartMini />
           </Grid>
         </Grid>
       </Grid>
