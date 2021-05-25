@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     image: {
       width: '67%',
     },
-    infoContainer {
+    infoContainer: {
       paddingRight: 25,
     },
     rating: {
@@ -92,7 +92,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       image: {
         width: '100%',
       },
-      infoContainer {
+      infoContainer: {
         paddingRight: 0,
       },
     },
