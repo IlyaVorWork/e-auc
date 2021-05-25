@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     infoContainer {
       paddingRight: 25,
-    }
+    },
     rating: {
       '& svg': {
         width: '1rem',
