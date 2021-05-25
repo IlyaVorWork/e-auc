@@ -154,7 +154,7 @@ const Product: FunctionComponent<IProductComponent> = ({ product }) => {
           >
             <img src={image.url} alt={name} className={classes.image} />
           </Grid>
-          <Grid item xs={isSmallWidth ? 12 : 6}>
+          <Grid item xs={isSmallWidth ? 12 : 6} className={classes.infoContainer}>
             <Grid container direction={'column'} spacing={3}>
               <Grid item>
                 <Typography variant={'caption'} className={classes.name}>
