@@ -15,6 +15,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     image: {
       width: '67%',
     },
+    infoContainer {
+      paddingRight: 25,
+    }
     rating: {
       '& svg': {
         width: '1rem',
@@ -89,6 +92,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       image: {
         width: '100%',
       },
+      infoContainer {
+        paddingRight: 0,
+      }
     },
   })
 )
