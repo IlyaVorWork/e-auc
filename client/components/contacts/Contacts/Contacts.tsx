@@ -348,7 +348,7 @@ const Contacts: FunctionComponent = () => {
               </Typography>
               <Grid container spacing={1}>
                 <Grid item>
-                  <Accordion title={'Доставляет ли FoodMarket в моём городе?'}>
+                  <Accordion title={'Доставляет ли eAuc. в мой город?'}>
                     <Typography variant={'body2'}>
                       Мы осуществляем доставку по большинству регионов России.
                       Чтобы проверить, доставляем ли мы вам товар, сначала
