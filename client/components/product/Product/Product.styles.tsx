@@ -94,7 +94,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       infoContainer {
         paddingRight: 0,
-      }
+      },
     },
   })
 )
