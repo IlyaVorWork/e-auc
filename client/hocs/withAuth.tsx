@@ -16,6 +16,7 @@ const withAuth = (Component: any) => {
     const router = useRouter()
 
     const { data, loading, error } = useQuery(ME)
+    console.log(data)
 
     useEffect(() => {
       const syncLogout = (event) => {
